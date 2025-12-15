@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <title>풍무역세권 수자인 그라센트 1차</title>
+        <meta name="description" content="예비입주자용 부동산/인테리어 자금 설계 시뮬레이터">
+        <!-- Favicon (기본값: 집 아이콘) -->
+        <!-- 실제 favicon.ico 파일을 사용하시려면 아래 href 값을 파일 경로로 변경하세요. 예: href="favicon.ico" -->
+        <link rel="icon" href="favicon.ico">
+    
+        <!-- 스타일 (Tailwind CSS) -->
+        <script src="resource.js"></script>
+        <link href="pretendard.css" rel="stylesheet">
+    
+    <style>
+        body { font-family: 'Pretendard', sans-serif; background-color: #f3f4f6; -webkit-font-smoothing: antialiased; }
+        
+        /* 커스텀 스크롤바 */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; }
+        ::-webkit-scrollbar-thumb { background: #ccc; border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: #aaa; }
+
+        /* 인쇄 설정 */
+        @media print {
+            .no-print { display: none !important; }
+            .print-area { display: block !important; }
+            body { background-color: white; -webkit-print-color-adjust: exact; }
+            input[type="number"], input[type="date"] { -moz-appearance: textfield; border: none; background: transparent; }
+            select { -webkit-appearance: none; -moz-appearance: none; appearance: none; border: none; background: transparent; }
+        }
+        
+        /* 옵션 선택 애니메이션 */
+        .option-item { transition: all 0.2s ease; }
+        .option-item:active { transform: scale(0.99); }
+        
+        /* 선택 불가 스타일 (Visual Feedback) */
+        .option-disabled { 
+            opacity: 0.5; 
+            pointer-events: none; 
+            background-color: #f3f4f6; 
+            position: relative; 
+            border-color: #e5e7eb;
+        }
+        .option-disabled::after {
+            content: "🚫 선택 불가 (타 옵션과 중복)";
+            position: absolute; 
+            top: 50%; 
+            right: 15px; 
+            transform: translateY(-50%);
+            font-size: 11px; 
+            color: #ef4444; 
+            font-weight: bold;
+            background-color: rgba(255,255,255,0.8);
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+        
+        /* 카테고리 헤더 스타일 */
+        .category-header { position: sticky; top: 0; z-index: 5; backdrop-filter: blur(8px); }
+    </style>
+<style>*, ::before, ::after{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/* ! tailwindcss v3.4.17 | MIT License | https://tailwindcss.com */*,::after,::before{box-sizing:border-box;border-width:0;border-style:solid;border-color:#e5e7eb}::after,::before{--tw-content:''}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;tab-size:4;font-family:ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0;padding:0}legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}.relative{position:relative}.sticky{position:sticky}.top-0{top:0px}.top-24{top:6rem}.z-20{z-index:20}.z-30{z-index:30}.col-span-5{grid-column:span 5 / span 5}.mx-auto{margin-left:auto;margin-right:auto}.my-3{margin-top:0.75rem;margin-bottom:0.75rem}.mb-1{margin-bottom:0.25rem}.mb-3{margin-bottom:0.75rem}.mb-5{margin-bottom:1.25rem}.mb-6{margin-bottom:1.5rem}.mt-1{margin-top:0.25rem}.mt-2{margin-top:0.5rem}.mt-3{margin-top:0.75rem}.mt-6{margin-top:1.5rem}.ml-2{margin-left:0.5rem}.block{display:block}.flex{display:flex}.grid{display:grid}.hidden{display:none}.h-4{height:1rem}.h-5{height:1.25rem}.h-6{height:1.5rem}.h-\[34px\]{height:34px}.h-\[500px\]{height:500px}.h-\[600px\]{height:600px}.h-10{height:2.5rem}.min-h-\[40px\]{min-height:40px}.w-16{width:4rem}.w-4{width:1rem}.w-5{width:1.25rem}.w-6{width:1.5rem}.w-full{width:100%}.max-w-6xl{max-width:72rem}.flex-1{flex:1 1 0%}.flex-shrink-0{flex-shrink:0}.flex-grow{flex-grow:1}.cursor-pointer{cursor:pointer}.grid-cols-1{grid-template-columns:repeat(1, minmax(0, 1fr))}.grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}.grid-cols-5{grid-template-columns:repeat(5, minmax(0, 1fr))}.flex-col{flex-direction:column}.items-end{align-items:flex-end}.items-center{align-items:center}.justify-end{justify-content:flex-end}.justify-center{justify-content:center}.justify-between{justify-content:space-between}.gap-1{gap:0.25rem}.gap-2{gap:0.5rem}.gap-3{gap:0.75rem}.gap-4{gap:1rem}.gap-6{gap:1.5rem}.space-y-1 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.25rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.25rem * var(--tw-space-y-reverse))}.space-y-2 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.5rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.5rem * var(--tw-space-y-reverse))}.space-y-4 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(1rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(1rem * var(--tw-space-y-reverse))}.space-y-6 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(1.5rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(1.5rem * var(--tw-space-y-reverse))}.overflow-hidden{overflow:hidden}.overflow-y-auto{overflow-y:auto}.whitespace-nowrap{white-space:nowrap}.break-keep{word-break:keep-all}.rounded{border-radius:0.25rem}.rounded-full{border-radius:9999px}.rounded-lg{border-radius:0.5rem}.rounded-xl{border-radius:0.75rem}.border{border-width:1px}.border-b{border-bottom-width:1px}.border-t{border-top-width:1px}.border-t-4{border-top-width:4px}.border-dashed{border-style:dashed}.border-\[\#00486d\]{--tw-border-opacity:1;border-color:rgb(0 77 64 / var(--tw-border-opacity, 1))}.border-\[\#00486d\]\/20{border-color:rgb(0 77 64 / 0.2)}.border-\[\#00695c\]{--tw-border-opacity:1;border-color:rgb(0 105 92 / var(--tw-border-opacity, 1))}.border-\[\#99f6e4\]{--tw-border-opacity:1;border-color:rgb(153 246 228 / var(--tw-border-opacity, 1))}.border-\[\#b2dfdb\]{--tw-border-opacity:1;border-color:rgb(178 223 219 / var(--tw-border-opacity, 1))}.border-\[\#ccfbf1\]{--tw-border-opacity:1;border-color:rgb(204 251 241 / var(--tw-border-opacity, 1))}.border-gray-100{--tw-border-opacity:1;border-color:rgb(243 244 246 / var(--tw-border-opacity, 1))}.border-gray-200{--tw-border-opacity:1;border-color:rgb(229 231 235 / var(--tw-border-opacity, 1))}.border-gray-300{--tw-border-opacity:1;border-color:rgb(209 213 219 / var(--tw-border-opacity, 1))}.border-orange-100{--tw-border-opacity:1;border-color:rgb(255 237 213 / var(--tw-border-opacity, 1))}.border-orange-200{--tw-border-opacity:1;border-color:rgb(254 215 170 / var(--tw-border-opacity, 1))}.bg-\[\#00486d\]{--tw-bg-opacity:1;background-color:rgb(0 77 64 / var(--tw-bg-opacity, 1))}.bg-\[\#00695c\]{--tw-bg-opacity:1;background-color:rgb(0 105 92 / var(--tw-bg-opacity, 1))}.bg-\[\#e0f2f1\]{--tw-bg-opacity:1;background-color:rgb(224 242 241 / var(--tw-bg-opacity, 1))}.bg-\[\#f0fdfa\]{--tw-bg-opacity:1;background-color:rgb(240 253 250 / var(--tw-bg-opacity, 1))}.bg-gray-100{--tw-bg-opacity:1;background-color:rgb(243 244 246 / var(--tw-bg-opacity, 1))}.bg-gray-50{--tw-bg-opacity:1;background-color:rgb(249 250 251 / var(--tw-bg-opacity, 1))}.bg-orange-50{--tw-bg-opacity:1;background-color:rgb(255 247 237 / var(--tw-bg-opacity, 1))}.bg-white{--tw-bg-opacity:1;background-color:rgb(255 255 255 / var(--tw-bg-opacity, 1))}.bg-white\/10{background-color:rgb(255 255 255 / 0.1)}.bg-white\/50{background-color:rgb(255 255 255 / 0.5)}.p-1\.5{padding:0.375rem}.p-2{padding:0.5rem}.p-2\.5{padding:0.625rem}.p-3{padding:0.75rem}.p-4{padding:1rem}.p-5{padding:1.25rem}.p-6{padding:1.5rem}.px-1{padding-left:0.25rem;padding-right:0.25rem}.px-2{padding-left:0.5rem;padding-right:0.5rem}.px-3{padding-left:0.75rem;padding-right:0.75rem}.py-1{padding-top:0.25rem;padding-bottom:0.25rem}.py-2{padding-top:0.5rem;padding-bottom:0.5rem}.px-4{padding-left:1rem;padding-right:1rem}.pb-1{padding-bottom:0.25rem}.pb-4{padding-bottom:1rem}.pt-2{padding-top:0.5rem}.pt-3{padding-top:0.75rem}.pt-4{padding-top:1rem}.pt-6{padding-top:1.5rem}.text-center{text-align:center}.text-right{text-align:right}.text-4xl{font-size:2.25rem;line-height:2.5rem}.text-\[10px\]{font-size:10px}.text-\[9px\]{font-size:9px}.text-base{font-size:1rem;line-height:1.5rem}.text-lg{font-size:1.125rem;line-height:1.75rem}.text-sm{font-size:0.875rem;line-height:1.25rem}.text-xl{font-size:1.25rem;line-height:1.75rem}.text-xs{font-size:0.75rem;line-height:1rem}.font-bold{font-weight:700}.font-extrabold{font-weight:800}.font-medium{font-weight:500}.font-normal{font-weight:400}.font-semibold{font-weight:600}.leading-relaxed{line-height:1.625}.leading-tight{line-height:1.25}.tracking-tight{letter-spacing:-0.025em}.text-\[\#00486d\]{--tw-text-opacity:1;color:rgb(0 77 64 / var(--tw-text-opacity, 1))}.text-\[\#00695c\]{--tw-text-opacity:1;color:rgb(0 105 92 / var(--tw-text-opacity, 1))}.text-\[\#80cbc4\]{--tw-text-opacity:1;color:rgb(128 203 196 / var(--tw-text-opacity, 1))}.text-gray-400{--tw-text-opacity:1;color:rgb(156 163 175 / var(--tw-text-opacity, 1))}.text-gray-500{--tw-text-opacity:1;color:rgb(107 114 128 / var(--tw-text-opacity, 1))}.text-gray-600{--tw-text-opacity:1;color:rgb(75 85 99 / var(--tw-text-opacity, 1))}.text-gray-700{--tw-text-opacity:1;color:rgb(55 65 81 / var(--tw-text-opacity, 1))}.text-gray-800{--tw-text-opacity:1;color:rgb(31 41 55 / var(--tw-text-opacity, 1))}.text-gray-900{--tw-text-opacity:1;color:rgb(17 24 39 / var(--tw-text-opacity, 1))}.text-orange-600{--tw-text-opacity:1;color:rgb(234 88 12 / var(--tw-text-opacity, 1))}.text-orange-700{--tw-text-opacity:1;color:rgb(194 65 12 / var(--tw-text-opacity, 1))}.text-white{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.shadow-lg{--tw-shadow:0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 10px 15px -3px var(--tw-shadow-color), 0 4px 6px -4px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-sm{--tw-shadow:0 1px 2px 0 rgb(0 0 0 / 0.05);--tw-shadow-colored:0 1px 2px 0 var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-md{--tw-shadow:0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 4px 6px -1px var(--tw-shadow-color), 0 2px 4px -2px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.ring-2{--tw-ring-offset-shadow:var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);--tw-ring-shadow:var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color);box-shadow:var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000)}.ring-\[\#00486d\]{--tw-ring-opacity:1;--tw-ring-color:rgb(0 77 64 / var(--tw-ring-opacity, 1))}.ring-offset-1{--tw-ring-offset-width:1px}.transition-colors{transition-property:color, background-color, border-color, fill, stroke, -webkit-text-decoration-color;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke, -webkit-text-decoration-color;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.transition-all{transition-property:all;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.last\:border-b-0:last-child{border-bottom-width:0px}.hover\:bg-\[\#00796b\]:hover{--tw-bg-opacity:1;background-color:rgb(0 121 107 / var(--tw-bg-opacity, 1))}.hover\:bg-white:hover{--tw-bg-opacity:1;background-color:rgb(255 255 255 / var(--tw-bg-opacity, 1))}.hover\:bg-white\/20:hover{background-color:rgb(255 255 255 / 0.2)}.hover\:bg-gray-50:hover{--tw-bg-opacity:1;background-color:rgb(249 250 251 / var(--tw-bg-opacity, 1))}.focus\:border-\[\#00486d\]:focus{--tw-border-opacity:1;border-color:rgb(0 77 64 / var(--tw-border-opacity, 1))}.focus\:outline-none:focus{outline:2px solid transparent;outline-offset:2px}.focus\:ring-2:focus{--tw-ring-offset-shadow:var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);--tw-ring-shadow:var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color);box-shadow:var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000)}.focus\:ring-\[\#00486d\]:focus{--tw-ring-opacity:1;--tw-ring-color:rgb(0 77 64 / var(--tw-ring-opacity, 1))}@media (min-width: 768px){.md\:inline{display:inline}.md\:h-auto{height:auto}.md\:w-auto{width:auto}.md\:grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}.md\:flex-row{flex-direction:row}.md\:p-6{padding:1.5rem}.md\:text-2xl{font-size:1.5rem;line-height:2rem}.md\:text-sm{font-size:0.875rem;line-height:1.25rem}.md\:text-base{font-size:1rem;line-height:1.5rem}}@media (min-width: 1024px){.lg\:col-span-5{grid-column:span 5 / span 5}.lg\:col-span-7{grid-column:span 7 / span 7}.lg\:grid-cols-12{grid-template-columns:repeat(12, minmax(0, 1fr))}}</style><style></style></head>
+<body>
+    
+    <!-- Header -->
+    <header class="bg-[#00486d] text-white p-4 md:p-6 shadow-lg sticky top-0 z-30 no-print">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+            <div class="flex items-center gap-3 w-full md:w-auto">
+                <div class="bg-white/10 p-2 rounded-lg">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 01-1 1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
+                </div>
+                <div>
+                    <h1 class="text-lg md:text-2xl font-bold leading-tight">풍무역세권 수자인 그라센트 1차</h1>
+                    <p class="text-[#80cbc4] text-xs md:text-sm">예비입주자용 옵션매니저</p>
+                </div>
+            </div>
+            <div class="flex gap-2 w-full md:w-auto justify-end">
+                <button onclick="resetApp()" class="px-3 py-2 bg-white/10 hover:bg-white/20 rounded-lg text-sm flex items-center gap-2 transition-colors">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg>
+                    <span class="hidden md:inline">초기화</span>
+                </button>
+                <button onclick="printReport()" class="px-3 py-2 bg-[#aa856c] hover:bg-[#d0a385] rounded-lg text-sm flex items-center gap-2 transition-colors font-semibold">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path></svg>
+                    견적서 출력
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <div class="max-w-6xl mx-auto p-4 md:p-6 grid grid-cols-1 lg:grid-cols-12 gap-6 w-full flex-grow">
+        
+        <!-- Main Controls (Left) -->
+        <div class="lg:col-span-7 space-y-6 no-print">
+            
+            <!-- Type & Floor Selectors -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <!-- STEP 1: Type -->
+                <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-200">
+                    <h3 class="text-sm font-bold text-[#00486d] mb-3 flex items-center gap-2">
+                        <span class="w-5 h-5 rounded-full bg-[#00486d] text-white flex items-center justify-center text-xs">1</span>
+                        평형 타입
+                    </h3>
+                    <div id="type-buttons" class="grid grid-cols-5 gap-2 min-h-[40px]">
+                <button onclick="setType('59A')" class="h-10 rounded-lg font-bold text-sm transition-all border flex items-center justify-center bg-white text-gray-600 border-gray-200 hover:bg-gray-50">
+                    59A
+                </button>
+                <button onclick="setType('59B')" class="h-10 rounded-lg font-bold text-sm transition-all border flex items-center justify-center bg-white text-gray-600 border-gray-200 hover:bg-gray-50">
+                    59B
+                </button>
+                <button onclick="setType('84')" class="h-10 rounded-lg font-bold text-sm transition-all border flex items-center justify-center bg-[#00486d] text-white border-[#00486d] shadow-md ring-2 ring-[#00486d] ring-offset-1">
+                    84
+                </button>
+            </div>
+        </div>
+
+        <!-- STEP 2: Floor -->
+        <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-200">
+            <h3 class="text-sm font-bold text-[#00486d] mb-3 flex items-center gap-2">
+                <span class="w-5 h-5 rounded-full bg-[#00486d] text-white flex items-center justify-center text-xs">2</span>
+                층수 (Zone)
+            </h3>
+            <div class="relative min-h-[40px]">
+                <select id="floor-select" onchange="updateFloor(this.value)" class="w-full p-2.5 border border-gray-300 rounded-lg font-medium text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#00486d] bg-gray-50 cursor-pointer hover:bg-white transition-colors">
+                    <option value="1F">1층</option>
+                    <option value="2F">2층</option>
+                    <option value="3F">3층</option>
+                    <option value="4F">4층</option>
+                    <option value="5F">5층</option>
+                    <option value="5F+">기준층</option>
+                </select>
+            </div>
+        </div>
+        </div>
+
+            <!-- STEP 3: Options List -->
+            <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden flex flex-col h-[600px] md:h-auto">
+                <div class="p-4 bg-gray-50 border-b border-gray-200 flex justify-between items-center sticky top-0 z-20">
+                    <h2 class="font-bold text-lg flex items-center gap-2 text-gray-800">
+                        <svg class="w-5 h-5 text-[#00486d]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                        옵션 선택
+                    </h2>
+                    <span id="option-count-badge" class="text-xs bg-white border border-gray-200 px-3 py-1 rounded-full text-[#00486d] font-bold shadow-sm">0개 선택중</span>
+                </div>
+                
+                <div id="options-container" class="overflow-y-auto flex-grow h-[500px] md:h-auto">
+                    
+                </div>
+            </div>
+        </div>
+
+        <!-- Summary Panel (Right - Sticky) -->
+        <div class="lg:col-span-5">
+            <div class="bg-white p-6 rounded-xl shadow-lg border-t-4 border-[#00486d] sticky top-24 print-area">
+                <div class="flex justify-between items-center mb-6 border-b border-gray-100 pb-4">
+                    <h2 class="text-xl font-bold text-gray-900 flex items-center gap-2">
+                        <svg class="w-6 h-6 text-[#00486d]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"></path></svg>
+                        견적 리포트
+                    </h2>
+                    <div id="summary-badge" class="text-right text-xs text-gray-500 bg-gray-100 px-2 py-1 rounded font-medium">84A / 20층 이상</div>
+                </div>
+
+                <!-- 중도금 설정 -->
+                <div class="bg-[#f0fdfa] p-4 rounded-lg border border-[#ccfbf1] mb-5 no-print">
+                    <h3 class="text-sm font-bold text-[#00486d] mb-3 flex items-center gap-2">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"></path></svg>
+                        중도금 자금 계획 설정
+                    </h3>
+                    <div class="mb-3">
+                        <label class="block text-xs font-semibold text-gray-600 mb-1">자납 회차 선택 (앞 회차부터 순차 적용)</label>
+                        <select id="self-pay-select" onchange="updateSelfPayRounds(this.value)" class="w-full p-2 border border-[#99f6e4] rounded text-sm bg-white focus:outline-none focus:ring-2 focus:ring-[#00486d]">
+                            <option value="0">0회 (전액 대출)</option>
+                            <option value="1">1회차 자납 (10%)</option>
+                            <option value="2">1~2회차 자납 (20%)</option>
+                            <option value="3">1~3회차 자납 (30%)</option>
+                            <option value="4">1~4회차 자납 (40%)</option>
+                            <option value="5">1~5회차 자납 (50%)</option>
+                            <option value="6">전액 자납 (60%, 무이자)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="grid grid-cols-2 gap-2">
+                        <div>
+                            <label class="block text-xs font-semibold text-gray-600 mb-1">잔금(입주) 예정일</label>
+                            <input type="date" id="balance-date" value="2028-10-25" onchange="updateSummary()" class="w-full p-1.5 border border-gray-300 rounded text-sm bg-white focus:outline-none focus:border-[#00486d]">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-gray-600 mb-1 text-right">대출 이자율</label>
+                            <div class="flex items-center justify-end gap-1 h-[34px]">
+                                <input type="number" id="interest-rate-input" value="3.5" step="0.1" min="0" onchange="updateInterestRate(this.value)" class="w-16 p-1.5 border border-gray-300 rounded text-right text-sm focus:outline-none focus:border-[#00486d]">
+                                <span class="text-xs text-gray-600">%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 취득가액 상세 -->
+                <div class="bg-[#e0f2f1] p-5 rounded-lg border border-[#b2dfdb] mb-6">
+                    <h3 class="text-[#00486d] font-bold text-sm mb-3 flex items-center gap-2">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>
+                        취득가액 (분양가 + 옵션)
+                    </h3>
+                    
+                    <div class="space-y-4 text-sm">
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-600">공급 금액 (분양가)</span>
+                            <span id="val-base-price" class="font-bold text-gray-800 text-base">710,000,000 원</span>
+                        </div>
+                        
+                        <div>
+                            <div class="flex justify-between items-center">
+                                <span class="text-gray-600 flex items-center gap-1">
+                                    선택 옵션 합계
+                                </span>
+                                <span id="val-option-price" class="font-bold text-[#00486d] text-base">+ 0 원</span>
+                            </div>
+                            <!-- Selected Option List Container -->
+                            <div id="selected-options-list" class="hidden mt-2 p-2 bg-gray-50 rounded border border-gray-200 text-xs text-gray-600 space-y-1">
+                                <!-- JS Injected -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <hr class="border-[#00486d]/20 my-3">
+                    
+                    <div class="space-y-1 mb-3">
+                        <div class="text-[10px] font-bold text-gray-500 mb-1 border-b border-gray-200 pb-1">① 분양가 납부</div>
+                        <div class="flex justify-between items-center px-1">
+                            <span class="text-xs text-gray-600">계약금 (10%)</span>
+                            <span id="val-apt-contract" class="text-xs font-bold text-gray-700">71,000,000 원</span>
+                        </div>
+                        <div class="flex justify-between items-center px-1">
+                            <span class="text-xs text-gray-600 flex items-center gap-1">
+                                중도금 (60%) 
+                                <span id="label-method-apt" class="text-[9px] bg-white border border-[#00695c] px-1 rounded text-[#00695c]">대출</span>
+                            </span>
+                            <span id="val-apt-interim" class="text-xs font-bold text-gray-700">426,000,000 원</span>
+                        </div>
+                        <div class="flex justify-between items-center px-1">
+                            <span class="text-xs text-gray-600">잔금 (30%)</span>
+                            <span id="val-apt-balance" class="text-xs font-bold text-gray-700">213,000,000 원</span>
+                        </div>
+                    </div>
+
+                    <div class="space-y-1 mb-3">
+                        <div class="text-[10px] font-bold text-gray-500 mb-1 border-b border-gray-200 pb-1 flex justify-between">
+                            <span>② 옵션 납부</span>
+                            <span id="val-opt-total-mini" class="font-normal">0 원</span>
+                        </div>
+                        <div class="flex justify-between items-center px-1">
+                            <span class="text-xs text-gray-600">계약금 (10%)</span>
+                            <span id="val-opt-contract" class="text-xs font-bold text-[#00486d]">0 원</span>
+                        </div>
+                        <div class="flex justify-between items-center px-1">
+                            <span class="text-xs text-gray-600">입주 잔금 (90%)</span>
+                            <span id="val-opt-balance" class="text-xs font-bold text-[#00486d]">0 원</span>
+                        </div>
+                    </div>
+
+                    <div class="mt-3 pt-3 border-t border-[#00486d]/20 flex justify-between items-center">
+                        <span class="text-xs font-bold text-[#00486d]">총 취득가액 합계</span>
+                        <span id="val-total-contract" class="text-lg font-extrabold text-[#00486d]">710,000,000 원</span>
+                    </div>
+                </div>
+
+                <!-- 부가 비용 -->
+                <div class="space-y-4 text-sm border-t border-gray-100 pt-4">
+                    <h4 class="font-bold text-orange-600 text-sm flex items-center gap-1">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+                        별도 예상 비용 (준비 필요)
+                    </h4>
+                    
+                    <!-- 이자 상세 내역 (Expandable) -->
+                    <div class="bg-orange-50 rounded-lg border border-orange-200 overflow-hidden">
+                        <div class="p-3 border-b border-orange-100 flex justify-between items-center">
+                            <div class="text-xs text-gray-700 flex items-center gap-1">
+                                + 중도금 대출 이자
+                                <span id="label-interest-rate" class="text-[10px] bg-white border border-gray-200 px-1 rounded">(3.5%)</span>
+                            </div>
+                            <span id="val-interest" class="font-bold text-orange-700 text-sm">20,874,000 원</span>
+                        </div>
+                        
+                        <!-- Breakdown Table -->
+                        <div class="p-2 bg-white/50 text-[10px] text-gray-500 space-y-1">
+                            <div class="flex justify-between font-semibold border-b pb-1 border-orange-100">
+                                <span>회차</span>
+                                <span>납부일 / 일수</span>
+                                <span>예상이자</span>
+                            </div>
+                            <div id="interest-breakdown-list">
+                        <div class="flex justify-between items-center ">
+                            <span>1회차 (2026-04-20)</span>
+                            <span class="text-right">
+                                924일 / 6,290,794 원
+                            </span>
+                        </div>
+                        <div class="flex justify-between items-center ">
+                            <span>2회차 (2026-09-20)</span>
+                            <span class="text-right">
+                                770일 / 5,242,328 원
+                            </span>
+                        </div>
+                        <div class="flex justify-between items-center ">
+                            <span>3회차 (2027-02-20)</span>
+                            <span class="text-right">
+                                616일 / 4,193,863 원
+                            </span>
+                        </div>
+                        <div class="flex justify-between items-center ">
+                            <span>4회차 (2027-09-20)</span>
+                            <span class="text-right">
+                                399일 / 2,716,479 원
+                            </span>
+                        </div>
+                        <div class="flex justify-between items-center ">
+                            <span>5회차 (2028-02-20)</span>
+                            <span class="text-right">
+                                252일 / 1,715,671 원
+                            </span>
+                        </div>
+                        <div class="flex justify-between items-center ">
+                            <span>6회차 (2028-07-20)</span>
+                            <span class="text-right">
+                                105일 / 714,863 원
+                            </span>
+                        </div></div>
+                        </div>
+                    </div>
+
+                    <div class="bg-gray-50 p-3 rounded-lg border border-gray-200 space-y-2">
+                        <div class="flex justify-between text-xs text-gray-700">
+                            <div class="flex flex-col">
+                                <span>+ 취득세 (지방교육세 포함)</span>
+                                <span id="label-tax-rate" class="text-[10px] text-gray-500">(세율 약 1.91%)</span>
+                            </div>
+                            <span id="val-tax" class="font-bold">13,537,333 원</span>
+                        </div>
+                        
+                        <!-- Tax Calculation Formula Display -->
+                        <div id="tax-formula-display" class="text-[10px] text-gray-500 border-t border-gray-200 pt-2 leading-relaxed break-keep">6억 초과 ~ 9억 이하 비례세율 적용<br>[(710,000,000원 × 2/3억원 - 3) × 1.1] ≒ 1.91%</div>
+                    </div>
+                </div>
+
+                <div class="mt-6 pt-6 border-t border-dashed border-gray-300">
+                    <div class="flex justify-between items-end mb-1">
+                        <span class="text-gray-900 font-bold text-lg">총 예상 소요 예산</span>
+                    </div>
+                    <div class="text-right">
+                        <span id="val-total-short" class="text-4xl font-extrabold text-[#00486d] tracking-tight">7.44억</span>
+                        <div id="val-total-full" class="text-sm text-gray-500 font-medium mt-1">744,411,333 원</div>
+                    </div>
+                </div>
+
+                <p class="text-[10px] text-gray-400 text-center mt-3 no-print">
+                    * 본 견적은 단순 참고용이며, 실제 계약 시 차이가 있을 수 있습니다.
+                </p>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- PURE JAVASCRIPT LOGIC -->
+    <script>
+        // --- DATA ---
+        const FLOOR_KEYS = ["1F", "2F", "3F", "4F", "5F", "5F+"];
+        const FLOOR_LABELS = {
+            "1F": "1층", "2F": "2층", "3F": "3층", "4F": "4층", 
+            "5F": "5층", "5F+": "기준층",
+        };
+
+        const PRICE_TABLE = {
+            "59A": { "1F": 513600000, "2F": 522000000, "3F": 527600000, "4F": 538700000, "5F": 549900000, "5F+": 558300000 },
+            "59B": { "1F": 512800000, "2F": 521100000, "3F": 526700000, "4F": 537800000, "5F": 548800000, "5F+": 557200000 },
+            "84": { "1F": 649100000, "2F": 659700000, "3F": 666700000, "4F": 680900000, "5F": 695000000, "5F+": 706500000 },
+        };
+
+        const INTERIM_DATES = [
+            "2026-04-20", // 1차
+            "2026-10-20", // 2차
+            "2027-04-20", // 3차
+            "2027-09-20", // 4차
+            "2028-02-20", // 5차
+            "2028-07-20"  // 6차
+        ];
+
+        const OPTION_CATEGORIES = ["발코니확장", "IoT 시스템 에어컨", "천장형 공기청정기", "빌트인 가전", "빌트인 가구", "마감자재 특화", "태양열 차단필름"];
+        
+        const SINGLE_SELECT_CATEGORIES = ["IoT 시스템 에어컨", "천장형 공기청정기", "시스템 청정환기"];
+        
+        const EXCLUSIVE_GROUPS = {
+            "oven_group": ["kitchen_oven_1", "kitchen_oven_2"],
+            "kicthen_group" : ["furniture_3", "furniture_4"],
+            "materials_group" : ["materials_2", "materials_3", "materials_4"],
+        };
+
+        // --- OPTION DATABASE ---
+        const COMMON_OPTS = [
+            { id: "clean_1", category: "천장형 공기청정기", name: "천장형 공기청정기 2대 (거실, 침실1)", price: 2200000 },
+            { id: "clean_2", category: "천장형 공기청정기", name: "천장형 공기청정기 4대 (거실, 침실1,2,3)", price: 4300000 },
+            { id: "kitchen_1", category: "빌트인 가전", name: "빌트인 냉장고+김치냉장고+수납장", price: 6500000 },
+            { id: "kitchen_2", category: "빌트인 가전", name: "식기세척기", price: 1100000 },
+            { id: "kitchen_3", category: "빌트인 가전", name: "인덕션", price: 1200000 },
+            { id: "kitchen_oven_1", category: "빌트인 가전", name: "빌트인 전기오븐 (일반형)", price: 350000 },
+            { id: "kitchen_oven_2", category: "빌트인 가전", name: "빌트인 전기오븐 (고급형)", price: 850000 },
+            { id: "furniture_1", category: "빌트인 가구", name: "현관 3연동 중문", price: 1300000 },
+            { id: "furniture_11", category: "빌트인 가구", name: "욕실특화", price: 5000000 },
+            { id: "furniture_12", category: "빌트인 가구", name: "다기능배기팬", price: 1200000 },
+            { id: "materials_7", category: "마감자재 특화", name: "복도팬트리 도어 ", price: 500000 },
+        ];
+
+        const TYPE_SPECIFIC_OPTS = {
+            "59A": [
+                { id: "balcony", category: "발코니확장", name: "발코니 확장", price: 5360000 },
+                { id: "air_1", category: "IoT 시스템 에어컨", name: "시스템 에어컨 2대 (거실, 침실1)", price: 4000000 },
+                { id: "air_2", category: "IoT 시스템 에어컨", name: "시스템 에어컨 4대 (거실, 침실1,2,3)", price: 6500000 },
+                { id: "furniture_2", category: "빌트인 가구", name: "신발장 특화", price: 800000 },
+                { id: "furniture_3", category: "빌트인 가구", name: "주방특화 (일반형)", price: 1900000 },
+                { id: "furniture_4", category: "빌트인 가구", name: "주방특화 (고급형)", price: 4300000 },
+
+                { id: "furniture_7", category: "빌트인 가구", name: "드레스룸 특화", price: 9000000 },
+                { id: "furniture_8", category: "빌트인 가구", name: "침실2 붙박이장", price: 800000 },
+                { id: "furniture_9", category: "빌트인 가구", name: "침실3 붙박이장", price: 1000000 },
+                { id: "furniture_10", category: "빌트인 가구", name: "침실2,3 공간특화", price: 2500000 },
+
+                { id: "materials_1", category: "마감자재 특화", name: "거실 아트월", price: 1500000 },
+                { id: "materials_2", category: "마감자재 특화", name: "벽체마감특화 (일반형)", price: 2300000 },
+                { id: "materials_3", category: "마감자재 특화", name: "벽체마감특화 (고급형)", price: 5000000 },
+                { id: "materials_4", category: "마감자재 특화", name: "벽체마감특화 (고급형/침실2,3특화선택시)", price: 4200000 },
+                { id: "materials_5", category: "마감자재 특화", name: "조명특화", price: 3700000 },
+                { id: "materials_6", category: "마감자재 특화", name: "바닥특화", price: 3000000 },
+
+                { id: "sunfilm", category: "태양열 차단필름", name: "태양열 차단필름", price: 2000000},
+
+                
+                
+            ],
+            "59B": [
+                { id: "balcony", category: "발코니확장", name: "발코니 확장", price: 5330000 },
+                { id: "air_1", category: "IoT 시스템 에어컨", name: "시스템 에어컨 2대 (거실, 침실1)", price: 4000000 },
+                { id: "air_2", category: "IoT 시스템 에어컨", name: "시스템 에어컨 4대 (거실, 침실1,2,3)", price: 6500000 },
+                
+                { id: "furniture_2", category: "빌트인 가구", name: "신발장 특화", price: 800000 },
+                { id: "furniture_3", category: "빌트인 가구", name: "주방특화 (일반형)", price: 1900000 },
+                { id: "furniture_4", category: "빌트인 가구", name: "주방특화 (고급형)", price: 4300000 },
+
+                { id: "furniture_7", category: "빌트인 가구", name: "드레스룸 특화", price: 9000000 },
+                { id: "furniture_8", category: "빌트인 가구", name: "침실2 붙박이장", price: 800000 },
+                { id: "furniture_9", category: "빌트인 가구", name: "침실3 붙박이장", price: 1000000 },
+                { id: "furniture_10", category: "빌트인 가구", name: "침실2,3 공간특화", price: 2500000 },
+
+                { id: "materials_1", category: "마감자재 특화", name: "거실 아트월", price: 1500000 },
+                { id: "materials_2", category: "마감자재 특화", name: "벽체마감특화 (일반형)", price: 2300000 },
+                { id: "materials_3", category: "마감자재 특화", name: "벽체마감특화 (고급형)", price: 5000000 },
+                { id: "materials_4", category: "마감자재 특화", name: "벽체마감특화 (고급형/침실2,3특화선택시)", price: 4200000 },
+                { id: "materials_5", category: "마감자재 특화", name: "조명특화", price: 3700000 },
+                { id: "materials_6", category: "마감자재 특화", name: "바닥특화", price: 3000000 },
+
+                { id: "sunfilm", category: "태양열 차단필름", name: "태양열 차단필름", price: 2000000},
+
+            ],
+            "84": [
+                { id: "balcony", category: "발코니확장", name: "발코니 확장", price: 6640000 },
+                { id: "air_1", category: "IoT 시스템 에어컨", name: "시스템 에어컨 2대 (거실, 침실1)", price: 4200000 },
+                { id: "air_2", category: "IoT 시스템 에어컨", name: "시스템 에어컨 4대 (거실, 침실1,2,3)", price: 7000000 },
+                
+                { id: "furniture_2", category: "빌트인 가구", name: "신발장 특화", price: 1100000 },
+                { id: "furniture_3", category: "빌트인 가구", name: "주방특화 (일반형)", price: 2300000 },
+                { id: "furniture_4", category: "빌트인 가구", name: "주방특화 (고급형)", price: 4700000 },
+                { id: "furniture_5", category: "빌트인 가구", name: "주방 홈바", price: 23000000 },
+                { id: "furniture_6", category: "빌트인 가구", name: "보조주방특화", price: 1200000 },
+                { id: "furniture_7", category: "빌트인 가구", name: "드레스룸 특화", price: 12000000 },
+                { id: "furniture_8", category: "빌트인 가구", name: "침실2 붙박이장", price: 1000000 },
+                { id: "furniture_9", category: "빌트인 가구", name: "침실3 붙박이장", price: 1200000 },
+
+                { id: "materials_1", category: "마감자재 특화", name: "거실 아트월", price: 1800000 },
+                { id: "materials_2", category: "마감자재 특화", name: "벽체마감특화 (일반형)", price: 2800000 },
+                { id: "materials_3", category: "마감자재 특화", name: "벽체마감특화 (고급형)", price: 5500000 },
+                { id: "materials_5", category: "마감자재 특화", name: "조명특화", price: 4500000 },
+                { id: "materials_6", category: "마감자재 특화", name: "바닥특화", price: 4000000 },
+
+                { id: "sunfilm", category: "태양열 차단필름", name: "태양열 차단필름", price: 2200000},
+                
+            ],
+        };
+
+        const APT_DATA = {
+            "59A": { interestEstimate35: 14200000 },
+            "59B": { interestEstimate35: 14100000 },
+            "84": { interestEstimate35: 15808685 },
+        };
+
+        let currentState = {
+            type: "84",
+            floorId: "5F+",
+            selectedOptions: new Set(),
+            interestRate: 3.5,
+            selfPayRounds: 0 
+        };
+
+        // --- CORE FUNCTIONS ---
+        function initApp() {
+            renderTypeButtons();
+            renderFloorOptions();
+            resetApp(); 
+        }
+
+        function resetApp() {
+            currentState.type = "84";
+            currentState.floorId = "5F+";
+            currentState.interestRate = 3.5;
+            currentState.selfPayRounds = 0;
+            
+            document.getElementById('self-pay-select').value = "0";
+            document.getElementById('interest-rate-input').value = 3.5;
+            document.getElementById('balance-date').value = "2029-01-07"; // Reset date
+
+            resetOptions(currentState.type);
+            renderTypeButtons(); 
+            const floorSelect = document.getElementById('floor-select');
+            if(floorSelect) floorSelect.value = currentState.floorId;
+            updateSummary();
+        }
+
+        function resetOptions(type) {
+            currentState.selectedOptions.clear();
+            renderOptionsList();
+        }
+
+        function setType(type) {
+            currentState.type = type;
+            resetOptions(type);
+            updateUI(); 
+        }
+
+        function updateFloor(floorId) {
+            currentState.floorId = floorId;
+            updateUI();
+        }
+
+        function updateSelfPayRounds(rounds) {
+            currentState.selfPayRounds = parseInt(rounds) || 0;
+            updateSummary();
+        }
+
+        function updateInterestRate(val) {
+            currentState.interestRate = parseFloat(val) || 0;
+            updateSummary();
+        }
+
+        function getMergedOptions(type) {
+            let opts = [...COMMON_OPTS];
+            if (TYPE_SPECIFIC_OPTS[type]) {
+                opts = [...opts, ...TYPE_SPECIFIC_OPTS[type]];
+            }
+            return opts;
+        }
+
+        // Dynamic Price Logic for 84B
+        function getOptionPrice(opt) {
+            
+            return opt.price;
+        }
+
+        function isOptionDisabled(opt) {
+            const is84C = currentState.type === "84C";
+            const is84A = currentState.type === "84A";
+            const selected = currentState.selectedOptions;
+            
+            if (is84C) {
+                const hasPlanSpec = selected.has("plan_1") || selected.has("plan_2");
+                if (hasPlanSpec) {
+                    if (["style_1", "store_1", "store_2", "store_4", "kitchen_2", "bath_2", "air_2", "clean_3"].includes(opt.id)) return true;
+                } else {
+                    if (["kitchen_3", "bath_3", "air_3", "clean_2"].includes(opt.id)) return true;
+                }
+            }
+
+            if (is84A) {
+                if (selected.has("kitchen_2") && opt.id === "store_2") return true;
+                if (selected.has("store_2") && opt.id === "kitchen_2") return true;
+            }
+
+            return false;
+        }
+
+        function toggleOption(id, category) {
+            const currentOpts = getMergedOptions(currentState.type);
+            
+            if (SINGLE_SELECT_CATEGORIES.includes(category)) {
+                if (!currentState.selectedOptions.has(id)) {
+                    currentOpts.forEach(o => {
+                        if (o.category === category && o.id !== id && currentState.selectedOptions.has(o.id)) {
+                            currentState.selectedOptions.delete(o.id);
+                        }
+                    });
+                }
+            }
+
+            for (const groupName in EXCLUSIVE_GROUPS) {
+                const groupIds = EXCLUSIVE_GROUPS[groupName];
+                if (groupIds.includes(id)) {
+                    if (!currentState.selectedOptions.has(id)) {
+                        groupIds.forEach(gid => {
+                            if (gid !== id && currentState.selectedOptions.has(gid)) {
+                                currentState.selectedOptions.delete(gid);
+                            }
+                        });
+                    }
+                }
+            }
+
+            if (currentState.selectedOptions.has(id)) {
+                currentState.selectedOptions.delete(id);
+            } else {
+                currentState.selectedOptions.add(id);
+            }
+            
+            renderOptionsList(); 
+            updateSummary();
+        }
+
+        // --- RENDERING ---
+        function formatMoney(num) {
+            return new Intl.NumberFormat('ko-KR').format(num);
+        }
+
+        function formatMoneyShort(num) {
+            return (num / 100000000).toFixed(2) + "억";
+        }
+
+        function renderTypeButtons() {
+            const container = document.getElementById('type-buttons');
+            if (!container) return;
+            container.innerHTML = Object.keys(APT_DATA).map(type => `
+                <button onclick="setType('${type}')" 
+                    class="h-10 rounded-lg font-bold text-sm transition-all border flex items-center justify-center ${
+                        currentState.type === type 
+                        ? 'bg-[#00486d] text-white border-[#00486d] shadow-md ring-2 ring-[#00486d] ring-offset-1' 
+                        : 'bg-white text-gray-600 border-gray-200 hover:bg-gray-50'
+                    }">
+                    ${type}
+                </button>
+            `).join('');
+        }
+
+        function renderFloorOptions() {
+            const select = document.getElementById('floor-select');
+            if (!select) return;
+            select.innerHTML = FLOOR_KEYS.map(key => `
+                <option value="${key}">${FLOOR_LABELS[key]}</option>
+            `).join('');
+            select.value = currentState.floorId;
+        }
+
+        function renderOptionsList() {
+            const container = document.getElementById('options-container');
+            if (!container) return;
+
+            const opts = getMergedOptions(currentState.type);
+            
+            let htmlContent = "";
+            OPTION_CATEGORIES.forEach(cat => {
+                const catOptions = opts.filter(o => o.category === cat);
+                if (catOptions.length === 0) return;
+
+                htmlContent += `<div class="bg-gray-50 px-4 py-2 text-xs font-bold text-gray-500 border-b border-gray-100 category-header flex items-center">${cat}</div>`;
+
+                catOptions.forEach(opt => {
+                    const isSelected = currentState.selectedOptions.has(opt.id);
+                    const isDisabled = isOptionDisabled(opt);
+                    const price = getOptionPrice(opt); // Use dynamic price
+                    
+                    htmlContent += `
+                    <div onclick="${isDisabled ? '' : `toggleOption('${opt.id}', '${opt.category}')`}" 
+                         class="option-item p-4 cursor-pointer group hover:bg-gray-50 border-b border-gray-100 last:border-b-0 ${isSelected ? 'bg-[#e0f2f1]/50' : 'bg-white'} ${isDisabled ? 'option-disabled' : ''}">
+                        <div class="flex items-center gap-3">
+                            <div class="w-5 h-5 rounded border flex items-center justify-center flex-shrink-0 transition-all ${isSelected ? 'bg-[#00486d] border-[#00486d]' : 'border-gray-300 bg-white'}">
+                                ${isSelected ? `<svg class="w-3.5 h-3.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>` : ''}
+                            </div>
+                            <div class="flex-1">
+                                <div class="flex justify-between items-center">
+                                    <span class="font-medium text-sm md:text-base ${isSelected ? 'text-gray-900' : 'text-gray-600'}">
+                                        ${opt.name}
+                                    </span>
+                                    <span class="font-bold text-sm whitespace-nowrap ml-2 ${isSelected ? 'text-[#00486d]' : 'text-gray-400'}">${formatMoney(price)}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    `;
+                });
+            });
+            container.innerHTML = htmlContent;
+            document.getElementById('option-count-badge').innerText = `${currentState.selectedOptions.size}개 선택중`;
+        }
+
+        function calcAcquisitionTax(price) {
+            let acqRate = 0;
+            let formulaText = "";
+            let rateDisplay = "";
+
+            if (price <= 600000000) {
+                acqRate = 1.1; // 1% + 0.1%
+                formulaText = "6억 원 이하 (취득세 1% + 지방교육세 0.1%)";
+                rateDisplay = "1.10";
+            } else if (price <= 900000000) {
+                // Formula: (Price * 2 / 300,000,000 - 3) * 1.1
+                // Step 1: Acq Rate = (Price * 2 / 300000000 - 3)
+                // Step 2: Total Rate = Acq Rate * 1.1
+                const baseRate = (price * 2 / 300000000) - 3;
+                // Round baseRate to 4 decimal places? Usually the final tax is calculated.
+                // Standard formula often used: Rate(%) = (Price * 2/300mil - 3)
+                const totalRate = baseRate * 1.1; 
+                acqRate = totalRate;
+                
+                // Format for display
+                const rateForDisplay = totalRate.toFixed(2);
+                rateDisplay = rateForDisplay;
+                formulaText = `6억 초과 ~ 9억 이하 비례세율 적용\n[(${formatMoney(price)}원 × 2/3억원 - 3) × 1.1] ≒ ${rateForDisplay}%`;
+            } else {
+                acqRate = 3.3; // 3% + 0.3%
+                formulaText = "9억 원 초과 (취득세 3% + 지방교육세 0.3%)";
+                rateDisplay = "3.30";
+            }
+            
+            const taxAmount = Math.floor(price * acqRate / 100);
+            
+            return { 
+                amount: taxAmount, 
+                rateDisplay: rateDisplay,
+                formulaText: formulaText
+            };
+        }
+
+        function updateSummary() {
+            const floorBasedPrice = PRICE_TABLE[currentState.type][currentState.floorId] || 0;
+            const currentOpts = getMergedOptions(currentState.type);
+            let totalOptionPrice = 0;
+            let selectedHtml = "";
+            
+            currentOpts.forEach(opt => {
+                if (currentState.selectedOptions.has(opt.id)) {
+                    const price = getOptionPrice(opt);
+                    totalOptionPrice += price;
+                    selectedHtml += `<div class="flex justify-between"><span>- ${opt.name}</span><span>${formatMoney(price)}</span></div>`;
+                }
+            });
+
+            const acquisitionValue = floorBasedPrice + totalOptionPrice;
+
+            // Interest Calculation Logic
+            // 1. Get Balance Date
+            const balanceDateStr = document.getElementById('balance-date').value;
+            const balanceDate = new Date(balanceDateStr);
+            
+            // 2. Loop Installments
+            let totalInterest = 0;
+            let interestHtml = "";
+            const oneDay = 24 * 60 * 60 * 1000;
+            
+            // Assuming Installment is 10% of SUPPLY PRICE per round (Total 60%)
+            const installmentAmount = floorBasedPrice * 0.1; 
+            
+            INTERIM_DATES.forEach((dateStr, index) => {
+                const roundNum = index + 1;
+                // Check if this round is Self Paid
+                // selfPayRounds = 2 means Round 1 and Round 2 are self paid.
+                const isSelfPaid = roundNum <= currentState.selfPayRounds;
+                
+                let roundInterest = 0;
+                let dayDiff = 0;
+                let note = "";
+
+                if (!isSelfPaid) {
+                    const payDate = new Date(dateStr);
+                    // Diff days
+                    const diffTime = balanceDate - payDate;
+                    dayDiff = Math.ceil(diffTime / oneDay);
+                    
+                    if (dayDiff > 0) {
+                        // Interest = Principal * Rate * Days / 365
+                        roundInterest = installmentAmount * (currentState.interestRate / 100) * (dayDiff / 365);
+                    }
+                } else {
+                    note = "(자납)";
+                }
+
+                totalInterest += roundInterest;
+                
+                // Add to breakdown list
+                if (roundInterest > 0 || isSelfPaid) {
+                    const displayAmt = isSelfPaid ? "0 원" : formatMoney(Math.floor(roundInterest)) + " 원";
+                    interestHtml += `
+                        <div class="flex justify-between items-center ${isSelfPaid ? 'text-green-600' : ''}">
+                            <span>${roundNum}회차 (${dateStr})</span>
+                            <span class="text-right">
+                                ${isSelfPaid ? note : `${dayDiff}일 / ${displayAmt}`}
+                            </span>
+                        </div>`;
+                }
+            });
+
+            document.getElementById('interest-breakdown-list').innerHTML = interestHtml;
+
+            // Tax & Totals
+            const taxData = calcAcquisitionTax(acquisitionValue);
+            const finalBudget = acquisitionValue + totalInterest + taxData.amount;
+
+            const setVal = (id, val) => { const el = document.getElementById(id); if(el) el.innerText = val; };
+            
+            setVal('val-base-price', `${formatMoney(floorBasedPrice)} 원`);
+            setVal('val-option-price', `+ ${formatMoney(totalOptionPrice)} 원`);
+
+            // Update Selected List
+            const listEl = document.getElementById('selected-options-list');
+            if (listEl) {
+                if (totalOptionPrice > 0) {
+                    listEl.innerHTML = selectedHtml;
+                    listEl.classList.remove('hidden');
+                } else {
+                    listEl.classList.add('hidden');
+                }
+            }
+
+            setVal('summary-badge', `${currentState.type} / ${FLOOR_LABELS[currentState.floorId]}`);
+            setVal('val-apt-contract', `${formatMoney(floorBasedPrice * 0.1)} 원`);
+            setVal('val-apt-interim', `${formatMoney(floorBasedPrice * 0.6)} 원`);
+            setVal('val-apt-balance', `${formatMoney(floorBasedPrice * 0.3)} 원`);
+            
+            setVal('val-opt-total-mini', `${formatMoney(totalOptionPrice)} 원`);
+            setVal('val-opt-contract', `${formatMoney(totalOptionPrice * 0.1)} 원`);
+            setVal('val-opt-balance', `${formatMoney(totalOptionPrice * 0.9)} 원`); 
+
+            setVal('val-total-contract', `${formatMoney(acquisitionValue)} 원`);
+            setVal('val-interest', `${formatMoney(Math.floor(totalInterest))} 원`);
+            document.getElementById('label-interest-rate').innerText = `(${currentState.interestRate}%)`;
+            
+            setVal('val-tax', `${formatMoney(taxData.amount)} 원`);
+            document.getElementById('label-tax-rate').innerText = `(세율 약 ${taxData.rateDisplay}%)`;
+            
+            // Formula Display Update
+            document.getElementById('tax-formula-display').innerText = taxData.formulaText;
+
+            setVal('val-total-short', formatMoneyShort(finalBudget));
+            setVal('val-total-full', `${formatMoney(Math.floor(finalBudget))} 원`);
+        }
+
+        function updateUI() {
+            renderTypeButtons(); 
+            const floorSelect = document.getElementById('floor-select');
+            if(floorSelect) floorSelect.value = currentState.floorId;
+            renderOptionsList();
+            updateSummary();
+        }
+
+        function printReport() { window.print(); }
+
+        // Robust Initialization
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initApp);
+        } else {
+            initApp();
+        }
+    </script>
+<script src="script.js" integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ==" data-cf-beacon="{&quot;version&quot;:&quot;2024.11.0&quot;,&quot;token&quot;:&quot;38029c3f833e49d6b4c320819a8f7372&quot;,&quot;r&quot;:1,&quot;server_timing&quot;:{&quot;name&quot;:{&quot;cfCacheStatus&quot;:true,&quot;cfEdge&quot;:true,&quot;cfExtPri&quot;:true,&quot;cfL4&quot;:true,&quot;cfOrigin&quot;:true,&quot;cfSpeedBrain&quot;:true},&quot;location_startswith&quot;:null}}" crossorigin="anonymous"></script>
+
+</body></html>
