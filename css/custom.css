@@ -1,0 +1,45 @@
+        body { font-family: 'Pretendard', sans-serif; background-color: #f3f4f6; -webkit-font-smoothing: antialiased; }
+        
+        /* 커스텀 스크롤바 */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; }
+        ::-webkit-scrollbar-thumb { background: #ccc; border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: #aaa; }
+
+        /* 인쇄 설정 */
+        @media print {
+            .no-print { display: none !important; }
+            .print-area { display: block !important; }
+            body { background-color: white; -webkit-print-color-adjust: exact; }
+            input[type="number"], input[type="date"] { -moz-appearance: textfield; border: none; background: transparent; }
+            select { -webkit-appearance: none; -moz-appearance: none; appearance: none; border: none; background: transparent; }
+        }
+        
+        /* 옵션 선택 애니메이션 */
+        .option-item { transition: all 0.2s ease; }
+        .option-item:active { transform: scale(0.99); }
+        
+        /* 선택 불가 스타일 (Visual Feedback) */
+        .option-disabled { 
+            opacity: 0.5; 
+            pointer-events: none; 
+            background-color: #f3f4f6; 
+            position: relative; 
+            border-color: #e5e7eb;
+        }
+        .option-disabled::after {
+            content: "🚫 선택 불가 (타 옵션과 중복)";
+            position: absolute; 
+            top: 50%; 
+            right: 15px; 
+            transform: translateY(-50%);
+            font-size: 11px; 
+            color: #ef4444; 
+            font-weight: bold;
+            background-color: rgba(255,255,255,0.8);
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+        
+        /* 카테고리 헤더 스타일 */
+        .category-header { position: sticky; top: 0; z-index: 5; backdrop-filter: blur(8px); }
