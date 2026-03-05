@@ -12,12 +12,12 @@ const PRICE_TABLE = {
 };
 
 const INTERIM_DATES = [
-    "2026-04-20", // 1차
-    "2026-10-20", // 2차
-    "2027-04-20", // 3차
-    "2027-09-20", // 4차
-    "2028-02-20", // 5차
-    "2028-07-20"  // 6차
+    "2026-04-24", // 1차
+    "2026-10-24", // 2차
+    "2027-04-24", // 3차
+    "2027-09-24", // 4차
+    "2028-02-24", // 5차
+    "2028-07-24"  // 6차
 ];
 
 const OPTION_CATEGORIES = ["발코니확장", "IoT 시스템 에어컨", "천장형 공기청정기", "빌트인 가전", "빌트인 가구", "마감자재 특화", "태양열 차단필름"];
@@ -130,7 +130,7 @@ let currentState = {
     type: "84",
     floorId: "5F+",
     selectedOptions: new Set(),
-    interestRate: 3.5,
+    interestRate: 3.77,
     selfPayRounds: 0
 };
 
@@ -145,12 +145,12 @@ function initApp() {
 function resetApp() {
     currentState.type = "84";
     currentState.floorId = "5F+";
-    currentState.interestRate = 3.5;
+    currentState.interestRate = 3.77;
     currentState.selfPayRounds = 0;
 
     document.getElementById('self-pay-select').value = "0";
-    document.getElementById('interest-rate-input').value = 3.5;
-    document.getElementById('balance-date').value = "2029-01-07"; // Reset date
+    document.getElementById('interest-rate-input').value = 3.77;
+    document.getElementById('balance-date').value = "2029-01-31"; // Reset date
 
     resetOptions(currentState.type);
     renderTypeButtons();
@@ -523,7 +523,7 @@ function updateSummary() {
 
     // Tax & Totals
     const taxData = calcAcquisitionTax(acquisitionValue);
-    const finalBudget = acquisitionValue + totalInterest + taxData.amount;
+    // finalBudget는 HUG 보증료 계산 이후에 산출
 
     const setVal = (id, val) => { const el = document.getElementById(id); if (el) el.innerText = val; };
 
@@ -560,8 +560,53 @@ function updateSummary() {
     // Formula Display Update
     document.getElementById('tax-formula-display').innerText = taxData.formulaText;
 
-    setVal('val-total-short', formatMoneyShort(finalBudget));
-    setVal('val-total-full', `${formatMoney(Math.floor(finalBudget))} 원`);
+    // HUG 보증료 계산 (보증료 = 보증금액 × 보증료율(0.13%) × 보증기간일수 / 365)
+    const hugInstallment = floorBasedPrice * 0.1; // 회차당 보증금액 = 분양가의 10%
+    const hugRate = 0.0013; // 보증료율 0.13%
+    let hugTotalFull = 0;
+    let hugTotalFee40 = 0;
+    let hugHtml = "";
+
+    INTERIM_DATES.forEach((dateStr, index) => {
+        const roundNum = index + 1;
+        const isSelfPaid = roundNum <= currentState.selfPayRounds;
+
+        let roundFeeFull = 0;
+        let roundFee40 = 0;
+        let dayDiff = 0;
+
+        if (!isSelfPaid) {
+            const payDate = new Date(dateStr);
+            const diffTime = balanceDate - payDate;
+            dayDiff = Math.ceil(diffTime / oneDay);
+
+            if (dayDiff > 0) {
+                roundFeeFull = Math.floor(hugInstallment * hugRate * dayDiff / 365);
+                roundFee40 = Math.floor(roundFeeFull * 0.6);
+            }
+        }
+
+        hugTotalFull += roundFeeFull;
+        hugTotalFee40 += roundFee40;
+
+        hugHtml += `
+            <div class="flex justify-between items-center ${isSelfPaid ? 'text-green-600' : ''}">
+                <span>${roundNum}회차 (${dateStr})</span>
+                <span>${isSelfPaid ? '(자납)' : dayDiff + '일'}</span>
+                <span>${isSelfPaid ? '-' : formatMoney(roundFeeFull) + ' 원'}</span>
+                <span>${isSelfPaid ? '-' : formatMoney(roundFee40) + ' 원'}</span>
+            </div>`;
+    });
+
+    const hugBreakdownEl = document.getElementById('hug-breakdown-list');
+    if (hugBreakdownEl) hugBreakdownEl.innerHTML = hugHtml;
+    setVal('val-hug-fee-full', `${formatMoney(hugTotalFull)} 원`);
+    setVal('val-hug-fee-40', `${formatMoney(hugTotalFee40)} 원`);
+
+    // 부가 지출 금액 = 중도금 대출 이자 + HUG 보증료(100%) + 취득세
+    const additionalCost = totalInterest + hugTotalFull + taxData.amount;
+    setVal('val-total-short', formatMoneyShort(additionalCost));
+    setVal('val-total-full', `${formatMoney(Math.floor(additionalCost))} 원`);
 }
 
 function updateUI() {
