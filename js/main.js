@@ -560,6 +560,37 @@ function updateSummary() {
     // Formula Display Update
     document.getElementById('tax-formula-display').innerText = taxData.formulaText;
 
+    // 취득세 감면 계산 (택1)
+    const selectedDiscount = document.querySelector('input[name="tax-discount"]:checked');
+    const discountValue = selectedDiscount ? selectedDiscount.value : 'none';
+
+    let taxDiscount = 0;
+    let discountDetailsHtml = "";
+
+    if (discountValue === 'first-home') {
+        taxDiscount = 2000000;
+        discountDetailsHtml = `<div class="flex justify-between"><span>생애최초 취득세 감면</span><span>- 2,000,000 원</span></div>`;
+    } else if (discountValue === 'newborn') {
+        taxDiscount = 5000000;
+        discountDetailsHtml = `<div class="flex justify-between"><span>신생아 취득세 감면</span><span>- 5,000,000 원</span></div>`;
+    }
+
+    const taxAfterDiscount = Math.max(0, taxData.amount - taxDiscount);
+
+    const taxDiscountDisplay = document.getElementById('tax-discount-display');
+    const taxDiscountDetails = document.getElementById('tax-discount-details');
+    const valTaxAfterDiscount = document.getElementById('val-tax-after-discount');
+
+    if (taxDiscountDisplay && taxDiscountDetails && valTaxAfterDiscount) {
+        if (taxDiscount > 0) {
+            taxDiscountDisplay.classList.remove('hidden');
+            taxDiscountDetails.innerHTML = discountDetailsHtml;
+            valTaxAfterDiscount.innerText = `${formatMoney(taxAfterDiscount)} 원`;
+        } else {
+            taxDiscountDisplay.classList.add('hidden');
+        }
+    }
+
     // HUG 보증료 계산 (보증료 = 보증금액 × 보증료율(0.13%) × 보증기간일수 / 365)
     const hugInstallment = floorBasedPrice * 0.1; // 회차당 보증금액 = 분양가의 10%
     const hugRate = 0.0013; // 보증료율 0.13%
@@ -603,8 +634,9 @@ function updateSummary() {
     setVal('val-hug-fee-full', `${formatMoney(hugTotalFull)} 원`);
     setVal('val-hug-fee-40', `${formatMoney(hugTotalFee40)} 원`);
 
-    // 부가 지출 금액 = 중도금 대출 이자 + HUG 보증료(100%) + 취득세
-    const additionalCost = totalInterest + hugTotalFull + taxData.amount;
+    // 부가 지출 금액 = 중도금 대출 이자 + HUG 보증료(100%) + 취득세 (감면 적용)
+    const finalTaxAmount = taxDiscount > 0 ? taxAfterDiscount : taxData.amount;
+    const additionalCost = totalInterest + hugTotalFull + finalTaxAmount;
     setVal('val-total-short', formatMoneyShort(additionalCost));
     setVal('val-total-full', `${formatMoney(Math.floor(additionalCost))} 원`);
 }

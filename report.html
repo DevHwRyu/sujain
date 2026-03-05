@@ -263,6 +263,41 @@
                     <div id="tax-formula-display"
                         class="text-[10px] text-gray-500 border-t border-gray-200 pt-2 leading-relaxed break-keep">
                         6억 초과 ~ 9억 이하 비례세율 적용<br>[(710,000,000원 × 2/3억원 - 3) × 1.1] ≒ 1.91%</div>
+
+                    <!-- 취득세 감면 옵션 (택1) -->
+                    <div class="border-t border-gray-200 pt-2 no-print">
+                        <div class="text-[10px] font-bold text-gray-500 mb-1.5">취득세 감면 적용 <span class="font-normal text-gray-400">(택1)</span></div>
+                        <div class="space-y-1.5">
+                            <label class="flex items-center gap-2 cursor-pointer group">
+                                <input type="radio" name="tax-discount" value="none" checked onchange="updateSummary()"
+                                    class="w-3.5 h-3.5 border-gray-300 text-[#00486d] focus:ring-[#00486d] cursor-pointer">
+                                <span class="text-[11px] text-gray-600 group-hover:text-gray-900 transition-colors">감면 없음</span>
+                            </label>
+                            <label class="flex items-center gap-2 cursor-pointer group">
+                                <input type="radio" name="tax-discount" value="first-home" onchange="updateSummary()"
+                                    class="w-3.5 h-3.5 border-gray-300 text-[#00486d] focus:ring-[#00486d] cursor-pointer">
+                                <span class="text-[11px] text-gray-600 group-hover:text-gray-900 transition-colors">생애최초 취득세 감면
+                                    <span class="text-[10px] text-emerald-600 font-bold">(-2,000,000원)</span>
+                                </span>
+                            </label>
+                            <label class="flex items-center gap-2 cursor-pointer group">
+                                <input type="radio" name="tax-discount" value="newborn" onchange="updateSummary()"
+                                    class="w-3.5 h-3.5 border-gray-300 text-[#00486d] focus:ring-[#00486d] cursor-pointer">
+                                <span class="text-[11px] text-gray-600 group-hover:text-gray-900 transition-colors">신생아 취득세 감면
+                                    <span class="text-[10px] text-emerald-600 font-bold">(-5,000,000원)</span>
+                                </span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- 감면 내역 표시 -->
+                    <div id="tax-discount-display" class="hidden border-t border-dashed border-gray-200 pt-2 space-y-1">
+                        <div id="tax-discount-details" class="text-[10px] text-emerald-700 space-y-0.5"></div>
+                        <div class="flex justify-between text-xs text-gray-700 font-bold pt-1">
+                            <span>감면 후 취득세</span>
+                            <span id="val-tax-after-discount" class="text-emerald-700">0 원</span>
+                        </div>
+                    </div>
                 </div>
             </div>
 
