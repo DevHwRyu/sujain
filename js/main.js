@@ -150,7 +150,7 @@ function resetApp() {
 
     document.getElementById('self-pay-select').value = "0";
     document.getElementById('interest-rate-input').value = 3.77;
-    document.getElementById('balance-date').value = "2029-01-31"; // Reset date
+    document.getElementById('balance-date').value = "2029-04-30"; // Reset date
 
     resetOptions(currentState.type);
     renderTypeButtons();
