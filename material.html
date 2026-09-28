@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-5E9TREFWSD"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-5E9TREFWSD');
+    </script>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>마감재리스트 갤러리 | 풍무역세권 수자인 그라센트 1차</title>
+    <meta name="description" content="84㎡ 마감재리스트(전기·기계·건축)를 항목별로 나눠 보는 갤러리">
+    <link rel="icon" href="favicon.ico">
+    <link href="css/pretendard.css" rel="stylesheet">
+    <style>
+        :root {
+            --brand: #00486d;
+            --brand-soft: #e6eef2;
+            --teal: #00897b;
+            --mint: #80cbc4;
+            --bg: #f3f4f6;
+            --card: #ffffff;
+            --line: #e5e7eb;
+            --ink: #111827;
+            --ink-2: #4b5563;
+            --ink-3: #9ca3af;
+            --red: #dc2626;
+            --red-soft: #fef2f2;
+        }
+        * { box-sizing: border-box; }
+        html { -webkit-text-size-adjust: 100%; }
+        body {
+            margin: 0; background: var(--bg); color: var(--ink);
+            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+            -webkit-font-smoothing: antialiased; word-break: keep-all;
+        }
+        button, input { font: inherit; color: inherit; }
+        img { display: block; max-width: 100%; }
+        .wrap { max-width: 1152px; margin: 0 auto; padding: 0 16px; }
+
+        /* Header */
+        .site-header { background: var(--brand); color: #fff; box-shadow: 0 4px 12px rgba(0,0,0,.12); }
+        .site-header .wrap { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding-top: 16px; padding-bottom: 16px; }
+        .brand { display: flex; align-items: center; gap: 12px; min-width: 0; }
+        .brand-icon { flex: none; width: 40px; height: 40px; border-radius: 8px; background: rgba(255,255,255,.1); display: grid; place-items: center; }
+        .brand h1 { margin: 0; font-size: 18px; font-weight: 700; line-height: 1.3; }
+        .brand p { margin: 2px 0 0; font-size: 12px; color: var(--mint); }
+        .home-link { flex: none; display: inline-flex; align-items: center; gap: 6px; padding: 8px 12px; border-radius: 8px; background: rgba(255,255,255,.1); color: #fff; text-decoration: none; font-size: 14px; }
+        .home-link:hover { background: rgba(255,255,255,.2); }
+
+        /* Toolbar */
+        .toolbar { position: sticky; top: 0; z-index: 20; background: rgba(255,255,255,.94); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); }
+        .toolbar .wrap { padding-top: 12px; padding-bottom: 10px; display: grid; gap: 10px; }
+        .row { display: flex; gap: 8px; align-items: center; }
+        .row.split { justify-content: space-between; flex-wrap: wrap; }
+        .seg { display: inline-flex; background: #eef0f3; border-radius: 10px; padding: 3px; gap: 2px; }
+        .seg button { border: 0; background: transparent; padding: 7px 14px; border-radius: 8px; font-size: 14px; font-weight: 600; color: var(--ink-2); cursor: pointer; white-space: nowrap; }
+        .seg button .cnt { font-weight: 500; color: var(--ink-3); margin-left: 4px; font-size: 12px; }
+        .seg button[aria-pressed="true"] { background: var(--brand); color: #fff; box-shadow: 0 1px 3px rgba(0,0,0,.15); }
+        .seg button[aria-pressed="true"] .cnt { color: var(--mint); }
+        #fileTabs { gap: 10px; padding: 0; background: transparent; }
+        #fileTabs button { padding: 8px 20px; border: 1px solid #d1d5db; background: #fff; border-radius: 10px; }
+        #fileTabs button:hover { background: #f3f4f6; }
+        #fileTabs button[aria-pressed="true"] { border-color: var(--brand); background: var(--brand); }
+        .seg.small button { padding: 6px 10px; font-size: 13px; }
+        .seg.small button[aria-pressed="true"] { background: #fff; color: var(--brand); }
+        .search { position: relative; flex: 1; min-width: 0; }
+        .search input { width: 100%; height: 38px; border: 1px solid #d1d5db; border-radius: 8px; padding: 0 12px 0 34px; background: #f9fafb; font-size: 14px; }
+        .search input:focus { outline: none; border-color: var(--brand); box-shadow: 0 0 0 3px rgba(0,72,109,.15); background: #fff; }
+        .search svg { position: absolute; left: 10px; top: 50%; transform: translateY(-50%); color: var(--ink-3); pointer-events: none; }
+        .toggle { flex: none; display: inline-flex; align-items: center; gap: 6px; height: 38px; padding: 0 12px; border: 1px solid #d1d5db; border-radius: 8px; background: #fff; font-size: 13px; font-weight: 600; color: var(--ink-2); cursor: pointer; white-space: nowrap; }
+        .toggle .dot { width: 8px; height: 8px; border-radius: 50%; background: #d1d5db; }
+        .toggle[aria-pressed="true"] { border-color: var(--red); color: var(--red); background: var(--red-soft); }
+        .toggle[aria-pressed="true"] .dot { background: var(--red); }
+        .chips { display: flex; gap: 6px; overflow-x: auto; scrollbar-width: none; margin: 0 -16px; padding: 0 16px 2px; }
+        .chips::-webkit-scrollbar { display: none; }
+        .chip { flex: none; border: 1px solid var(--line); background: #fff; border-radius: 999px; padding: 5px 12px; font-size: 13px; color: var(--ink-2); cursor: pointer; white-space: nowrap; }
+        .chip .cnt { color: var(--ink-3); margin-left: 3px; font-size: 12px; }
+        .chip[aria-pressed="true"] { background: var(--brand-soft); border-color: var(--brand); color: var(--brand); font-weight: 600; }
+        .chip[aria-pressed="true"] .cnt { color: var(--brand); }
+
+        /* Content */
+        main { padding-top: 8px; padding-bottom: 40px; }
+        .section { margin-top: 20px; scroll-margin-top: 170px; }
+        .section h2 { display: flex; align-items: baseline; gap: 8px; margin: 0 0 10px; font-size: 16px; font-weight: 700; color: var(--brand); }
+        .section h2 .cnt { font-size: 12px; font-weight: 500; color: var(--ink-3); }
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; }
+        .card { display: flex; flex-direction: column; text-align: left; padding: 0; border: 1px solid var(--line); border-radius: 12px; background: var(--card); overflow: hidden; cursor: pointer; box-shadow: 0 1px 2px rgba(0,0,0,.04); transition: box-shadow .15s ease, transform .15s ease, border-color .15s ease; }
+        .card:hover { box-shadow: 0 6px 16px rgba(0,0,0,.08); border-color: #cfd8dc; transform: translateY(-1px); }
+        .card:focus-visible, .strip:focus-visible { outline: 3px solid rgba(0,72,109,.4); outline-offset: 2px; }
+        .card-photo { position: relative; aspect-ratio: 4 / 3; background: #fff; border-bottom: 1px solid #f0f1f3; display: grid; place-items: center; padding: 12px; }
+        .card-photo img { max-height: 100%; width: auto; object-fit: contain; }
+        .card-photo .has-link { position: absolute; right: 8px; top: 8px; width: 22px; height: 22px; border-radius: 6px; background: var(--brand-soft); color: var(--brand); display: grid; place-items: center; }
+        .card-photo .no { position: absolute; left: 8px; top: 8px; font-size: 11px; color: var(--ink-3); background: rgba(255,255,255,.9); padding: 1px 6px; border-radius: 4px; border: 1px solid #f0f1f3; }
+        .card-body { padding: 10px 12px 12px; display: grid; gap: 4px; }
+        .crumb { font-size: 12px; color: #6b7280; line-height: 1.4; }
+        .title { font-size: 15px; font-weight: 700; line-height: 1.35; }
+        .model { font-size: 13px; color: var(--ink-2); line-height: 1.45; white-space: pre-line; overflow-wrap: anywhere; }
+        .specs { margin: 0; display: grid; grid-template-columns: auto 1fr; gap: 1px 8px; font-size: 12px; line-height: 1.45; }
+        .specs dt { color: var(--ink-3); }
+        .specs dd { margin: 0; color: var(--ink-2); overflow-wrap: anywhere; }
+        .note { font-size: 12px; line-height: 1.45; color: var(--ink-2); margin-top: 2px; }
+        .note .red { color: var(--red); font-weight: 600; }
+        .card .note { padding: 6px 8px; background: #f9fafb; border-radius: 6px; }
+        .card.paid .note { background: var(--red-soft); }
+
+        /* Row (strip) view */
+        .strips { display: grid; gap: 10px; max-width: 942px; }
+        .strip { display: block; width: 100%; padding: 0; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; background: #fff; cursor: zoom-in; }
+        .strip img { width: 100%; height: auto; }
+        .empty { padding: 60px 0; text-align: center; color: var(--ink-3); font-size: 14px; }
+
+        .foot { margin-top: 32px; padding-top: 16px; border-top: 1px solid var(--line); font-size: 12px; color: var(--ink-3); line-height: 1.6; }
+
+        /* Lightbox */
+        dialog.lb { width: min(980px, 100vw - 24px); max-height: calc(100vh - 24px); padding: 0; border: 0; border-radius: 14px; box-shadow: 0 20px 60px rgba(0,0,0,.3); overflow: hidden; }
+        dialog.lb::backdrop { background: rgba(10,20,30,.6); }
+        .lb-inner { display: flex; flex-direction: column; max-height: calc(100vh - 24px); }
+        .lb-head { display: flex; align-items: center; gap: 8px; padding: 10px 12px; border-bottom: 1px solid var(--line); background: #fff; }
+        .lb-head .pos { flex: 1; font-size: 13px; color: var(--ink-3); }
+        .icon-btn { width: 36px; height: 36px; border-radius: 8px; border: 1px solid var(--line); background: #fff; display: grid; place-items: center; cursor: pointer; color: var(--ink-2); }
+        .icon-btn:hover { background: #f3f4f6; }
+        .icon-btn:disabled { opacity: .35; cursor: default; }
+        .lb-body { overflow-y: auto; padding: 16px; display: grid; gap: 16px; }
+        .lb-body > *, .lb-top > * { min-width: 0; }
+        .lb-top { display: grid; grid-template-columns: 300px 1fr; gap: 20px; align-items: start; }
+        .lb-photo { background: #fff; border: 1px solid var(--line); border-radius: 10px; aspect-ratio: 1 / 1; display: grid; place-items: center; padding: 16px; }
+        .lb-photo img { max-width: 100%; max-height: 100%; height: auto; object-fit: contain; }
+        .lb-info { display: grid; gap: 8px; align-content: start; }
+        .lb-info .crumb { font-size: 13px; }
+        .lb-info .title { font-size: 20px; }
+        .lb-info .model { font-size: 15px; color: var(--ink); }
+        .lb-info .specs { font-size: 14px; gap: 4px 12px; }
+        .lb-info .note { font-size: 14px; padding: 10px 12px; background: #f9fafb; border-radius: 8px; }
+        .lb-info .note.paid { background: var(--red-soft); }
+        .links { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px; }
+        .links a { display: inline-flex; align-items: center; gap: 5px; padding: 7px 12px; border-radius: 8px; font-size: 13px; font-weight: 600; text-decoration: none; border: 1px solid var(--line); color: var(--ink-2); background: #fff; }
+        .links a:hover { background: #f3f4f6; }
+        .links a.primary { background: var(--brand); border-color: var(--brand); color: #fff; }
+        .links a.primary:hover { background: #003a58; }
+        .links a small { font-weight: 500; opacity: .8; }
+        .lb-strip h3 { margin: 0 0 6px; font-size: 13px; font-weight: 600; color: var(--ink-3); }
+        .lb-strip .scroller { overflow-x: auto; border: 1px solid var(--line); border-radius: 8px; }
+        .lb-strip img { width: 100%; min-width: 720px; height: auto; }
+
+        @media (max-width: 640px) {
+            .brand h1 { font-size: 16px; }
+            .home-link span { display: none; }
+            .seg button { padding: 7px 10px; }
+            #fileTabs { gap: 6px; }
+            #fileTabs button { padding: 7px 11px; }
+            .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+            .card-photo { padding: 8px; }
+            .card-body { padding: 8px 10px 10px; }
+            .title { font-size: 14px; }
+            .model { font-size: 12px; }
+            .lb-body { padding: 12px; }
+            .lb-top { grid-template-columns: 1fr; gap: 12px; }
+            .lb-photo { aspect-ratio: 4 / 3; }
+            .lb-info .title { font-size: 18px; }
+            .section { scroll-margin-top: 200px; }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="site-header">
+        <div class="wrap">
+            <div class="brand">
+                <div class="brand-icon" aria-hidden="true">
+                    <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
+                </div>
+                <div>
+                    <h1>마감재리스트 갤러리 (84㎡)</h1>
+                    <p>풍무역세권 수자인 그라센트 1차</p>
+                </div>
+            </div>
+            <a class="home-link" href="index.html" aria-label="옵션매니저로 이동">
+                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                <span>옵션매니저</span>
+            </a>
+        </div>
+    </header>
+
+    <div class="toolbar">
+        <div class="wrap">
+            <div class="row split">
+                <div class="seg" id="fileTabs" role="group" aria-label="리스트 선택"></div>
+                <div class="seg small" id="viewTabs" role="group" aria-label="보기 방식">
+                    <button type="button" data-view="card" aria-pressed="true">카드</button>
+                    <button type="button" data-view="row" aria-pressed="false">원본 행</button>
+                </div>
+            </div>
+            <div class="row">
+                <label class="search">
+                    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5" stroke-linecap="round"/></svg>
+                    <input id="q" type="search" placeholder="품목, 모델명, 위치 검색" autocomplete="off" aria-label="검색">
+                </label>
+                <button type="button" class="toggle" id="paidToggle" aria-pressed="false"><span class="dot"></span>유상옵션 관련</button>
+            </div>
+            <div class="chips" id="chips" role="group" aria-label="구분"></div>
+        </div>
+    </div>
+
+    <main class="wrap">
+        <div id="content"></div>
+        <p class="foot">
+            원본 마감재리스트(84㎡ 전기·기계·건축) 이미지를 표의 행 단위로 잘라 정리했습니다.
+            카드의 글자는 원본 이미지를 옮겨 적은 것이므로, 정확한 내용은 항목을 눌러 원본 행 이미지로 확인하세요.
+            병합된 구분 칸은 각 행에 이름을 다시 붙여 표시했습니다.<br>
+            제품 링크는 2026년 9월 웹 검색으로 찾은 제조사·판매처 페이지입니다. 현장 전용(특판) 모델은 공개 페이지가 없어 브랜드 사이트나 검색 링크로 대신했으며,
+            색상·마감은 원본 리스트와 다를 수 있습니다.
+        </p>
+    </main>
+
+    <dialog class="lb" id="lb" aria-label="항목 상세">
+        <div class="lb-inner">
+            <div class="lb-head">
+                <span class="pos" id="lbPos"></span>
+                <button type="button" class="icon-btn" id="lbPrev" aria-label="이전 항목">
+                    <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </button>
+                <button type="button" class="icon-btn" id="lbNext" aria-label="다음 항목">
+                    <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </button>
+                <button type="button" class="icon-btn" id="lbClose" aria-label="닫기">
+                    <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18" stroke-linecap="round"/></svg>
+                </button>
+            </div>
+            <div class="lb-body" id="lbBody"></div>
+        </div>
+    </dialog>
+
+    <script>
+    const DATA = {"files":[{"key":"elec","title":"전기","source":"마감재리스트_전기.jpeg","items":[{"no":1,"L1":"시스템","L2":"현관","spec":"도어폰","model":"HCC-2000","note":[],"paid":false,"strip":["images/material/elec/row-001.webp",942,159],"photo":["images/material/elec/photo-001.webp",75,116],"links":[{"kind":"official","url":"https://hyundaiht.co.kr/kr/product/smart_home/view.php?idx=67","label":"현대HT HCC-2000 도어폰"}],"q":"현대HT HCC-2000"},{"no":2,"L1":"시스템","L2":"현관","spec":"일괄소등스위치 (조명일괄소등, 가스차단, E/V호출, 외출, 날씨정보)","model":"HYBOM240","note":[],"paid":false,"strip":["images/material/elec/row-002.webp",942,164],"photo":["images/material/elec/photo-002.webp",108,114],"links":[{"kind":"brand","url":"https://www.dasangng.co.kr/","label":"다산지앤지 공식 홈페이지"}],"q":"다산지앤지 HYBOM240"},{"no":3,"L1":"시스템","L2":"거실","spec":"통합형월패드","model":"HYHN-1000","note":[],"paid":false,"strip":["images/material/elec/row-003.webp",942,164],"photo":["images/material/elec/photo-003.webp",139,79],"links":[{"kind":"official","url":"https://hyundaiht.co.kr/kr/product/smart_home/view.php?idx=1465","label":"현대HT HYHN-1000 월패드"}],"q":"현대HT HYHN-1000"},{"no":4,"L1":"시스템","L2":"주방","spec":"공기청정형 환기제어시스템","model":"지정 제품","note":[],"paid":false,"strip":["images/material/elec/row-004.webp",942,164],"photo":["images/material/elec/photo-004.webp",113,120]},{"no":5,"L1":"시스템","L2":"침실1 (안방)","spec":"네트워크스위치","model":"HYSPT212 (안방용)","note":[{"t":"조명특화 (유상옵션) 선택 시 HYSPT222D","red":true}],"paid":true,"strip":["images/material/elec/row-005.webp",942,164],"photo":["images/material/elec/photo-005.webp",107,114],"links":[],"q":"HYSPT212"},{"no":6,"L1":"시스템","L2":"침실2, 3","spec":"네트워크스위치","model":"HYSPT212 (침실용)","note":[{"t":"조명특화 (유상옵션) 선택 시 HYSPT222D","red":true}],"paid":true,"strip":["images/material/elec/row-006.webp",942,164],"photo":["images/material/elec/photo-006.webp",105,114],"links":[],"q":"HYSPT212"},{"no":7,"L1":"시스템","L2":"욕실2","spec":"욕실폰","model":"HBP-300","note":[],"paid":false,"strip":["images/material/elec/row-007.webp",942,164],"photo":["images/material/elec/photo-007.webp",132,98],"links":[{"kind":"official","url":"https://hyundaiht.co.kr/kr/product/smart_home/view.php?idx=82","label":"현대HT HBP-300 욕실폰"}],"q":"현대HT HBP-300"},{"no":8,"L1":"조명","L2":"거실","spec":"직부등","model":"","specs":[["크기","W700 X D400 X H35"],["램프","LED 60W*2EA"],["재질","STEEL, AL., ACRYLIC"],["취부","직부"]],"note":[],"paid":false,"strip":["images/material/elec/row-008.webp",942,164],"photo":["images/material/elec/photo-008.webp",157,94]},{"no":9,"L1":"조명","L2":"거실","spec":"직부간접등","model":"","specs":[["크기","W지정길이 X H70.5"],["램프","LED 65/55W(색변환+디밍)(직)/15W(간)+13W(간)"],["재질","STEEL, AL., PC"],["취부","직부"]],"note":[{"t":"확장 시 유상옵션","red":true}],"paid":true,"strip":["images/material/elec/row-009.webp",942,164],"photo":["images/material/elec/photo-009.webp",159,103]},{"no":10,"L1":"조명","L2":"침실1 (안방)","spec":"직부등","model":"","specs":[["크기","W600 X D600 X H35"],["램프","LED 50W"],["재질","STEEL, AL., ACRYLIC"],["취부","직부"]],"note":[],"paid":false,"strip":["images/material/elec/row-010.webp",942,164],"photo":["images/material/elec/photo-010.webp",158,94]},{"no":11,"L1":"조명","L2":"침실1 (안방)","spec":"직부간접등","model":"","specs":[["크기","W615 X D615 X H42"],["램프","LED 50W(색변환+디밍)+10W"],["재질","STEEL, AL., ACRYLIC"],["취부","직부"]],"note":[{"t":"확장 시 유상옵션","red":true}],"paid":true,"strip":["images/material/elec/row-011.webp",942,164],"photo":["images/material/elec/photo-011.webp",157,88]},{"no":12,"L1":"조명","L2":"침실2, 3","spec":"직부등","model":"","specs":[["크기","W500 X D500 X H35"],["램프","LED 40W"],["재질","STEEL, AL., ACRYLIC"],["취부","직부"]],"note":[],"paid":false,"strip":["images/material/elec/row-012.webp",942,164],"photo":["images/material/elec/photo-012.webp",158,104]},{"no":13,"L1":"조명","L2":"침실2, 3","spec":"직부간접등","model":"","specs":[["크기","W500 X D500 X H42"],["램프","LED 40W(색변환+디밍)+10W"],["재질","STEEL, AL., ACRYLIC"],["취부","직부"]],"note":[{"t":"확장 시 유상옵션","red":true}],"paid":true,"strip":["images/material/elec/row-013.webp",942,164],"photo":["images/material/elec/photo-013.webp",157,104]},{"no":14,"L1":"조명","L2":"주방","spec":"매입등","model":"","specs":[["크기","W900 X D180 X D60"],["램프","LED 40W"],["재질","STEEL, ABS, ACRYLIC"],["취부","매입"]],"note":[],"paid":false,"strip":["images/material/elec/row-014.webp",942,164],"photo":["images/material/elec/photo-014.webp",157,117]},{"no":15,"L1":"조명","L2":"주방","spec":"라인매입등","model":"","specs":[["크기","W지정길이 X D75 X H50"],["램프","LED 60W"],["재질","AL, ACRYLIC"],["취부","매입"]],"note":[{"t":"확장 시 유상옵션","red":true}],"paid":true,"strip":["images/material/elec/row-015.webp",942,163],"photo":["images/material/elec/photo-015.webp",158,114]},{"no":16,"L1":"조명","L2":"식당","spec":"식탁 직부등","model":"","specs":[["크기","Ø100 X H100"],["램프","LED COB 10W"],["재질","AL, ABS, ACRYLIC"],["취부","직부"]],"note":[],"paid":false,"strip":["images/material/elec/row-016.webp",942,164],"photo":["images/material/elec/photo-016.webp",157,117]},{"no":17,"L1":"조명","L2":"식당","spec":"직부 간접등","model":"","specs":[["크기","W지정길이 X H37.3 / W지정길이 X H37.3"],["램프","18W"],["재질","AL., PC"],["취부","직부"]],"note":[{"t":"확장 시 유상옵션","red":true}],"paid":true,"strip":["images/material/elec/row-017.webp",942,164],"photo":["images/material/elec/photo-017.webp",159,116]},{"no":18,"L1":"조명","L2":"복도","spec":"매입등","model":"","specs":[["크기","Ø115 X H30"],["램프","LED 5W"],["재질","AL, ACRYLIC"],["취부","매입"]],"note":[],"paid":false,"strip":["images/material/elec/row-018.webp",942,164],"photo":["images/material/elec/photo-018.webp",157,107]},{"no":19,"L1":"조명","L2":"복도","spec":"풋라이트 매입등","model":"","specs":[["크기","W90 X D54 X H90"],["램프","LED 3W"],["재질","AL(MATT GREY)"],["취부","벽매입"]],"note":[{"t":"확장 시 유상옵션","red":true}],"paid":true,"strip":["images/material/elec/row-019.webp",942,163],"photo":["images/material/elec/photo-019.webp",101,90]},{"no":20,"L1":"조명","L2":"현관","spec":"매입센서등","model":"","specs":[["크기","W250 X D250 X H71"],["램프","LED 9W*2"],["재질","STEEL, ABS, ACRYLIC"],["취부","매입"]],"note":[],"paid":false,"strip":["images/material/elec/row-020.webp",942,164],"photo":["images/material/elec/photo-020.webp",157,115]},{"no":21,"L1":"조명","L2":"현관팬트리 / 복도팬트리","spec":"매입센서등","model":"","specs":[["크기","W250 X D250 X H54"],["램프","LED 10W"],["재질","STEEL, ABS, ACRYLIC"],["취부","매입"]],"note":[],"paid":false,"strip":["images/material/elec/row-021.webp",942,162],"photo":["images/material/elec/photo-021.webp",157,111]},{"no":22,"L1":"조명","L2":"드레스룸","spec":"매입등","model":"","specs":[["크기","W250 X D250 X H54"],["램프","LED 10W"],["재질","STEEL, ABS, ACRYLIC"],["취부","매입"]],"note":[],"paid":false,"strip":["images/material/elec/row-022.webp",942,164],"photo":["images/material/elec/photo-022.webp",157,100]},{"no":23,"L1":"조명","L2":"욕실1,2","spec":"매입등","model":"","specs":[["크기","Ø180 X H55"],["램프","LED 15W"],["재질","STEEL, ACRYLIC"],["취부","매입"]],"note":[],"paid":false,"strip":["images/material/elec/row-023.webp",942,164],"photo":["images/material/elec/photo-023.webp",158,118]},{"no":24,"L1":"조명","L2":"발코니 / 실외기실 / 대피공간","spec":"직부등 / 벽부등","model":"","specs":[["크기","W220 X H20"],["램프","LED 10W"],["재질","STEEL, ACRYLIC"],["취부","직부 / 벽부"]],"note":[],"paid":false,"strip":["images/material/elec/row-024.webp",942,163],"photo":["images/material/elec/photo-024.webp",155,113]}]},{"key":"mech","title":"기계","source":"마감재리스트_기계.jpeg","items":[{"no":1,"L1":"욕실","L2":"위생도기","spec":"양변기 (욕실1, 2)","model":"계림요업 / C-1055F","note":[],"paid":false,"strip":["images/material/mech/row-001.webp",942,163],"photo":["images/material/mech/photo-001.webp",74,112],"links":[{"kind":"official","url":"https://www.kelim.net/product/view?modelcode=JR1055C","label":"계림 C-1055F 양변기"}],"q":"계림 C-1055F"},{"no":2,"L1":"욕실","L2":"위생도기","spec":"비데 (욕실2)","model":"이누스 / IST-N52E","note":[{"t":"* 유상옵션 욕실특화 선택 시 미설치됨","red":true}],"paid":true,"strip":["images/material/mech/row-002.webp",942,164],"photo":["images/material/mech/photo-002.webp",129,89],"links":[{"kind":"list","url":"http://www.inushaus.kr/mobile/product/bidet_list.asp?search_cate=3","label":"이누스 비데 목록 (IST-N52E 포함)"}],"q":"이누스 IST-N52E"},{"no":3,"L1":"욕실","L2":"위생도기","spec":"비데일체형 양변기 (욕실1, 2)","model":"아메리칸스탠다드 /\nC8310 + C3600","note":[{"t":"확장 시 유상옵션","red":true}],"paid":true,"strip":["images/material/mech/row-003.webp",942,164],"photo":["images/material/mech/photo-003.webp",120,117],"links":[{"kind":"official","url":"https://www.americanstandard.co.kr/main/product.do?proc_type=view&v_product=7&v_cate1=1&v_cate2=9","label":"아메리칸스탠다드 플랫 비데일체형 양변기 (C8310/C3600)"}],"q":"아메리칸스탠다드 C8310 C3600"},{"no":4,"L1":"욕실","L2":"위생도기","spec":"세면기 (욕실1, 2)","model":"계림요업 / L-317FD","note":[],"paid":false,"strip":["images/material/mech/row-004.webp",942,164],"photo":["images/material/mech/photo-004.webp",100,105],"links":[{"kind":"official","url":"https://www.kelim.net/product/view?modelcode=X317SD","label":"계림 L-317FD 세면기"}],"q":"계림 L-317FD"},{"no":5,"L1":"욕실","L2":"위생도기","spec":"세면기 (욕실1, 2)","model":"아메리칸스탠다드 / CCASF516","note":[{"t":"확장 시 유상옵션","red":true}],"paid":true,"strip":["images/material/mech/row-005.webp",942,163],"photo":["images/material/mech/photo-005.webp",111,106],"links":[{"kind":"official","url":"https://www.americanstandard.co.kr/main/product.do?proc_type=view&v_product=43&v_cate1=3&v_cate2=16","label":"아메리칸스탠다드 플랫 반다리 일체형 세면기 CCASF516"}],"q":"아메리칸스탠다드 CCASF516"},{"no":6,"L1":"욕실","L2":"위생도기","spec":"욕조 (욕실1)","model":"지정 욕조","note":[{"t":"* 유상옵션 욕실특화 선택 시 에이프런 미설치됨","red":true}],"paid":true,"strip":["images/material/mech/row-006.webp",942,164],"photo":["images/material/mech/photo-006.webp",141,125]},{"no":7,"L1":"욕실","L2":"수전","spec":"세면기 수전 (욕실1,2)","model":"대림통상 /\nFL 0402C(원홀)","note":[],"paid":false,"strip":["images/material/mech/row-007.webp",942,164],"photo":["images/material/mech/photo-007.webp",93,101],"links":[{"kind":"official","url":"https://www.dltc.co.kr/product1det?idx=3369","label":"대림통상 FL 0402C 원홀 세면수전"}],"q":"대림통상 FL 0402C"},{"no":8,"L1":"욕실","L2":"수전","spec":"세면기 수전 (욕실1,2)","model":"아메리칸스탠다드 /\nFA1673(사틴)","note":[{"t":"확장 시 유상옵션","red":true}],"paid":true,"strip":["images/material/mech/row-008.webp",942,164],"photo":["images/material/mech/photo-008.webp",103,108],"links":[{"kind":"official","url":"https://www.americanstandard.co.kr/main/product.do?proc_type=view&v_product=120&v_cate1=4&v_cate2=20","label":"아메리칸스탠다드 플랫 라운드 세면수전 FA1673"}],"q":"아메리칸스탠다드 FA1673"},{"no":9,"L1":"욕실","L2":"수전","spec":"욕조 수전 (욕실1)","model":"대림통상 /\nFB0400C(욕조수전) +\nPF165C(헤드) +\nFA180C(슬라이드바)","note":[],"paid":false,"strip":["images/material/mech/row-009.webp",942,164],"photo":["images/material/mech/photo-009.webp",143,125],"links":[{"kind":"official","url":"https://www.dltc.co.kr/product1det?idx=3362","label":"대림통상 FB 0400C 욕조수전","part":"욕조수전 FB0400C"},{"kind":"official","url":"https://www.dltc.co.kr/product1det?idx=3431","label":"대림통상 PF 165C 안마 헤드","part":"헤드 PF165C"},{"kind":"official","url":"https://www.dltc.co.kr/product1det?idx=3512","label":"대림통상 FA 180C 슬라이드바","part":"슬라이드바 FA180C"}],"q":"대림통상 FB0400C"},{"no":10,"L1":"욕실","L2":"수전","spec":"욕조 수전 (욕실1)","model":"아메리칸스탠다드 /\nFB5781(사틴/선반형) +\nFH6125(사틴/슬라이드바)","note":[{"t":"확장 시 유상옵션","red":true}],"paid":true,"strip":["images/material/mech/row-010.webp",942,164],"photo":["images/material/mech/photo-010.webp",129,120],"links":[{"kind":"official","url":"https://www.americanstandard.co.kr/main/product.do?proc_type=view&v_product=178&v_cate1=5&v_cate2=26","label":"아메리칸스탠다드 플랫 2WAY 선반형 샤워욕조수전 FB5781","part":"욕조수전 FB5781"},{"kind":"official","url":"https://www.americanstandard.co.kr/main/product.do?proc_type=view&v_product=197&v_cate1=5&v_cate2=59","label":"아메리칸스탠다드 문 쉐도우 300 슬라이드바 FH6125","part":"슬라이드바 FH6125"}],"q":"아메리칸스탠다드 FB5781"},{"no":11,"L1":"욕실","L2":"수전","spec":"샤워 수전 (욕실2)","model":"세비앙 / UP-B","note":[],"paid":false,"strip":["images/material/mech/row-011.webp",942,159],"photo":["images/material/mech/photo-011.webp",57,119],"links":[{"kind":"official","url":"https://www.cebien.com/product/detail.html?product_no=78","label":"세비앙 유피(UP)-B 선반형 샤워"}],"q":"세비앙 UP-B"},{"no":12,"L1":"욕실","L2":"수전","spec":"샤워 수전 (욕실2)","model":"세비앙 /\nCANVAS(BN 도금, 사틴)","note":[{"t":"확장 시 유상옵션","red":true}],"paid":true,"strip":["images/material/mech/row-012.webp",942,164],"photo":["images/material/mech/photo-012.webp",56,125],"links":[{"kind":"official","url":"https://www.cebien.com/product/detail.html?product_no=404","label":"세비앙 스마트 샤워기 캔버스"}],"q":"세비앙 캔버스 샤워기"},{"no":13,"L1":"욕실","L2":"수전","spec":"청소용 수전 (욕실1,2)","model":"대림통상 /\nPF037C(청소스프레이건) +\nPB031-2(앵글밸브)","note":[],"paid":false,"strip":["images/material/mech/row-013.webp",942,164],"photo":["images/material/mech/photo-013.webp",106,105],"links":[{"kind":"official","url":"https://www.dltc.co.kr/product1det?idx=3258","label":"대림통상 PF 037C 청소용 스프레이건","part":"스프레이건 PF037C"},{"kind":"official","url":"https://www.dltc.co.kr/product1det?idx=3340","label":"대림통상 PB031-2NC 2구 앵글밸브","part":"앵글밸브 PB031-2"}],"q":"대림통상 PF037C"},{"no":14,"L1":"욕실","L2":"수전","spec":"청소용 수전 (욕실1,2)","model":"세비앙 /\n토네 스프레이건\n(올 그레이)","note":[{"t":"확장 시 유상옵션","red":true}],"paid":true,"strip":["images/material/mech/row-014.webp",942,164],"photo":["images/material/mech/photo-014.webp",51,113],"links":[{"kind":"official","url":"https://www.cebien.com/product/detail.html?product_no=444","label":"세비앙 토네 스프레이건"}],"q":"세비앙 토네 스프레이건"},{"no":15,"L1":"욕실","L2":"액세서리","spec":"수건선반 (욕실1)","model":"지정 수건선반","note":[{"t":"본 공사시 동급의 타사제품으로 변경될 수 있음","red":false}],"paid":false,"strip":["images/material/mech/row-015.webp",942,163],"photo":["images/material/mech/photo-015.webp",136,64]},{"no":16,"L1":"욕실","L2":"액세서리","spec":"수건선반 (욕실1)","model":"CC-5068N\n(무광 니켈 마감)","note":[{"t":"확장 시 유상옵션","red":true}],"paid":true,"strip":["images/material/mech/row-016.webp",942,164],"photo":["images/material/mech/photo-016.webp",128,51],"links":[{"kind":"list","url":"http://miliving.com/product01.php?cate=AVVIO&cate2=%EC%88%98%EA%B1%B4%EC%84%A0%EB%B0%98&page=2","label":"엠아이리빙 AVVIO 수건선반 목록 (CC-5068)"}],"q":"엠아이리빙 CC-5068N"},{"no":17,"L1":"욕실","L2":"액세서리","spec":"수건걸이 (욕실1, 2)","model":"지정 수건걸이","note":[{"t":"본 공사시 동급의 타사제품으로 변경될 수 있음","red":false}],"paid":false,"strip":["images/material/mech/row-017.webp",942,164],"photo":["images/material/mech/photo-017.webp",118,49]},{"no":18,"L1":"욕실","L2":"액세서리","spec":"수건걸이 (욕실1, 2)","model":"BN-3560N\n(무광 니켈 마감)","note":[{"t":"확장 시 유상옵션","red":true}],"paid":true,"strip":["images/material/mech/row-018.webp",942,164],"photo":["images/material/mech/photo-018.webp",109,50],"links":[{"kind":"list","url":"http://miliving.com/product01.php?cate=BRANI&cate2=BN-3500","label":"엠아이리빙 BRANI BN-3500 시리즈 (BN-3560)"}],"q":"엠아이리빙 BN-3560N"},{"no":19,"L1":"욕실","L2":"액세서리","spec":"매립휴지걸이 (욕실1)","model":"지정 휴지걸이\n(폰트레이)","note":[{"t":"본 공사시 동급의 타사제품으로 변경될 수 있음","red":false}],"paid":false,"strip":["images/material/mech/row-019.webp",942,164],"photo":["images/material/mech/photo-019.webp",78,115]},{"no":20,"L1":"욕실","L2":"액세서리","spec":"매립휴지걸이 (욕실1)","model":"MS-2990THN\n(폰트레이, 무광 니켈 마감)","note":[{"t":"확장 시 유상옵션","red":true}],"paid":true,"strip":["images/material/mech/row-020.webp",942,164],"photo":["images/material/mech/photo-020.webp",82,116],"links":[{"kind":"list","url":"http://miliving.com/product01.php?cate=AVVIO&cate2=%EB%A7%A4%EB%A6%BD%ED%9C%B4%EC%A7%80%EA%B1%B8%EC%9D%B4","label":"엠아이리빙 AVVIO 매립휴지걸이 목록 (MS-2990T)"}],"q":"엠아이리빙 MS-2990THN"},{"no":21,"L1":"욕실","L2":"액세서리","spec":"매립휴지걸이 (욕실2)","model":"지정 휴지걸이\n(욕실폰, 폰트레이)","note":[{"t":"*욕실폰은 참고 이미지임","red":true},{"t":"본 공사시 동급의 타사제품으로 변경될 수 있음","red":false}],"paid":false,"strip":["images/material/mech/row-021.webp",942,160],"photo":["images/material/mech/photo-021.webp",58,119]},{"no":22,"L1":"욕실","L2":"액세서리","spec":"매립휴지걸이 (욕실2)","model":"MS-2990THSN\n(욕실폰, 폰트레이, 무광 니켈 마감)","note":[{"t":"확장 시 유상옵션 *욕실폰은 참고 이미지임","red":true}],"paid":true,"strip":["images/material/mech/row-022.webp",942,164],"photo":["images/material/mech/photo-022.webp",61,124],"links":[{"kind":"list","url":"http://miliving.com/product01.php?cate=AVVIO&cate2=%EB%A7%A4%EB%A6%BD%ED%9C%B4%EC%A7%80%EA%B1%B8%EC%9D%B4","label":"엠아이리빙 AVVIO 매립휴지걸이 목록 (MS-2990TS)"}],"q":"엠아이리빙 MS-2990THSN"},{"no":23,"L1":"욕실","L2":"액세서리","spec":"청소솔 (욕실1, 2)","model":"지정 청소솔","note":[{"t":"본 공사시 동급의 타사제품으로 변경될 수 있음","red":false}],"paid":false,"strip":["images/material/mech/row-023.webp",942,164],"photo":["images/material/mech/photo-023.webp",44,125]},{"no":24,"L1":"주방","L2":"수전","spec":"싱크 수전","model":"대림통상 / FS0707","note":[],"paid":false,"strip":["images/material/mech/row-024.webp",942,164],"photo":["images/material/mech/photo-024.webp",66,111],"links":[{"kind":"official","url":"https://www.dltc.co.kr/product1det?idx=3594","label":"대림통상 FS 0707 싱크수전"}],"q":"대림통상 FS0707"},{"no":25,"L1":"주방","L2":"수전","spec":"싱크 수전","model":"세비앙 /\nC-Water Dual Kitchen (BN도금)","note":[{"t":"확장 시 유상옵션","red":true}],"paid":true,"strip":["images/material/mech/row-025.webp",942,164],"photo":["images/material/mech/photo-025.webp",101,106],"links":[{"kind":"official","url":"https://www.cebien.com/product/detail.html?product_no=310","label":"세비앙 씨워터 듀얼키친"}],"q":"세비앙 씨워터 듀얼키친"},{"no":26,"L1":"발코니1","L2":"수전","spec":"물뿌리개 수전","model":"대림통상 /\nFE 202 (냉수 2구) + PF011","note":[],"paid":false,"strip":["images/material/mech/row-026.webp",942,164],"photo":["images/material/mech/photo-026.webp",135,111],"links":[{"kind":"official","url":"https://www.dltc.co.kr/product1det?idx=3345","label":"대림통상 FE202C 에버콕(2구/냉수)","part":"수전 FE202"},{"kind":"official","url":"https://www.dltc.co.kr/product1det?idx=3262","label":"대림통상 PF 011 다기능 스프레이건","part":"스프레이건 PF011"}],"q":"대림통상 FE202"},{"no":27,"L1":"발코니2","L2":"수전","spec":"세탁/손빨래 수전","model":"대림통상 /\nFE 201 (온수/냉수)","note":[],"paid":false,"strip":["images/material/mech/row-027.webp",942,164],"photo":["images/material/mech/photo-027.webp",75,89],"links":[{"kind":"official","url":"https://www.dltc.co.kr/product1det?idx=3344","label":"대림통상 FE 201C 에버콕(1구/온냉)"}],"q":"대림통상 FE201"},{"no":28,"L1":"주방","L2":"가전","spec":"3구 가스쿡탑","model":"파세코 / PGC-B363RH","note":[],"paid":false,"strip":["images/material/mech/row-028.webp",942,164],"photo":["images/material/mech/photo-028.webp",121,75],"links":[{"kind":"official","url":"https://www.paseco.co.kr/goods/goods_view.php?goodsNo=1000000408","label":"파세코 PGC-B363RH 제품 페이지"}],"q":"파세코 PGC-B363RH"},{"no":29,"L1":"주방","L2":"가전","spec":"인덕션","model":"LG / BEI3ASB4 BIE","note":[{"t":"확장 시 유상옵션","red":true}],"paid":true,"strip":["images/material/mech/row-029.webp",942,164],"photo":["images/material/mech/photo-029.webp",121,124],"links":[{"kind":"official","url":"https://www.lge.co.kr/electric-ranges/bei3asb4","label":"LG 디오스 인덕션 BEI3ASB4"}],"q":"LG전자 BEI3ASB4"},{"no":30,"L1":"주방","L2":"가전","spec":"렌지후드","model":"파세코 / PHD-DT092TS","note":[],"paid":false,"strip":["images/material/mech/row-030.webp",942,164],"photo":["images/material/mech/photo-030.webp",134,109],"links":[{"kind":"brand","url":"https://www.paseco.co.kr/","label":"파세코 공식 홈페이지"}],"q":"파세코 PHD-DT092TS"},{"no":31,"L1":"주방","L2":"가전","spec":"매립형 후드","model":"하츠 / IBH80","note":[{"t":"확장 시 유상옵션","red":true}],"paid":true,"strip":["images/material/mech/row-031.webp",942,161],"photo":["images/material/mech/photo-031.webp",141,64],"links":[{"kind":"brand","url":"https://www.haatz.com/","label":"하츠 공식 홈페이지"}],"q":"하츠 IBH80"},{"no":32,"L1":"주방","L2":"가전","spec":"전기오븐 (일반형)","model":"삼성전자 / NQ36A6555CK","note":[{"t":"확장 시 유상옵션","red":true}],"paid":true,"strip":["images/material/mech/row-032.webp",942,164],"photo":["images/material/mech/photo-032.webp",138,111],"links":[{"kind":"official","url":"https://www.samsung.com/sec/business/built-in-appliances/electric-oven-nq36a6555/NQ36A6555CK/","label":"삼성 콤팩트 전기오븐 36L NQ36A6555CK"}],"q":"삼성전자 NQ36A6555CK"},{"no":33,"L1":"주방","L2":"가전","spec":"전기오븐 (고급형)","model":"삼성전자 / NQ50T8539BK","note":[{"t":"확장 시 유상옵션","red":true}],"paid":true,"strip":["images/material/mech/row-033.webp",942,164],"photo":["images/material/mech/photo-033.webp",137,110],"links":[{"kind":"official","url":"https://www.samsung.com/sec/cooking-appliances/microwave-oven-convection-nq50t8539bk-d2c/NQ50T8539BK/","label":"삼성 Bespoke 콤팩트 오븐 50L NQ50T8539BK"}],"q":"삼성전자 NQ50T8539BK"},{"no":34,"L1":"주방","L2":"가전","spec":"식기세척기","model":"LG / DIE5PT (가구패널 부착형)","note":[{"t":"확장 시 유상옵션","red":true}],"paid":true,"strip":["images/material/mech/row-034.webp",942,164],"photo":["images/material/mech/photo-034.webp",82,120],"links":[{"kind":"brand","url":"https://www.lge.co.kr/","label":"LG전자 공식 홈페이지"}],"q":"LG전자 DIE5PT"},{"no":35,"L1":"주방","L2":"가전","spec":"빌트인 냉장고","model":"LG / M62BAAA332 (미스트 베이지)","note":[{"t":"확장 시 유상옵션","red":true}],"paid":true,"strip":["images/material/mech/row-035.webp",942,164],"photo":["images/material/mech/photo-035.webp",60,125],"links":[{"kind":"brand","url":"https://www.lge.co.kr/","label":"LG전자 공식 홈페이지"}],"q":"LG전자 M62BAAA332"},{"no":36,"L1":"주방","L2":"가전","spec":"빌트인 김치냉장고","model":"LG / Z334AAA151 (미스트 베이지)","note":[{"t":"확장 시 유상옵션","red":true}],"paid":true,"strip":["images/material/mech/row-036.webp",942,163],"photo":["images/material/mech/photo-036.webp",47,125],"links":[{"kind":"official","url":"https://www.lge.co.kr/kimchi-refrigerators/z334gcb151s","label":"LG 김치톡톡 Fit & Max (본체 Z334AAA151)"}],"q":"LG전자 Z334AAA151"},{"no":37,"L1":"주방","L2":"가전","spec":"음식물 탈수기","model":"가온 / GOD-340","note":[],"paid":false,"strip":["images/material/mech/row-037.webp",942,164],"photo":["images/material/mech/photo-037.webp",162,97],"links":[{"kind":"shop","url":"https://prod.danawa.com/info/?pcode=5300620","label":"다나와 가온 SINKLEIN GOD-340"}],"q":"가온 GOD-340"},{"no":38,"L1":"주방","L2":"가전","spec":"절수페달","model":"지정 절수페달","note":[{"t":"본 공사시 동급의 타사제품으로 변경될 수 있음","red":false}],"paid":false,"strip":["images/material/mech/row-038.webp",942,164],"photo":["images/material/mech/photo-038.webp",162,42]},{"no":39,"L1":"거실","L2":"가전","spec":"시스템 에어컨","model":"UV 나노형","note":[{"t":"확장 시 유상옵션","red":true}],"paid":true,"strip":["images/material/mech/row-039.webp",942,164],"photo":["images/material/mech/photo-039.webp",150,101]},{"no":40,"L1":"침실1(안방) / 침실2,3","L2":"가전","spec":"시스템 에어컨","model":"UV 나노형","note":[{"t":"확장 시 유상옵션","red":true}],"paid":true,"strip":["images/material/mech/row-040.webp",942,165],"photo":["images/material/mech/photo-040.webp",143,96]},{"no":41,"L1":"거실","L2":"가전","spec":"시스클라인","model":"자이S&D / 시스클라인 SC01-HLA","note":[{"t":"확장 시 유상옵션","red":true}],"paid":true,"strip":["images/material/mech/row-041.webp",942,158],"photo":["images/material/mech/photo-041.webp",120,84],"links":[{"kind":"official","url":"https://www.sysclein.com/product01_frame.php","label":"시스클라인 천장형 공기청정기 (SC01-HLA)"}],"q":"자이S&D 시스클라인 SC01-HLA"},{"no":42,"L1":"침실1(안방) / 침실2,3","L2":"가전","spec":"시스클라인","model":"자이S&D / 시스클라인 SC02-HLA","note":[{"t":"확장 시 유상옵션","red":true}],"paid":true,"strip":["images/material/mech/row-042.webp",942,164],"photo":["images/material/mech/photo-042.webp",95,89],"links":[{"kind":"official","url":"https://www.sysclein.com/product01_frame.php","label":"시스클라인 mini 천장형 공기청정기 (SC02-HLA)"}],"q":"자이S&D 시스클라인 SC02-HLA"},{"no":43,"L1":"드레스룸","L2":"가전","spec":"제습기","model":"힘펠 / DHV-5PCCU","note":[{"t":"확장 시 유상옵션","red":true}],"paid":true,"strip":["images/material/mech/row-043.webp",942,164],"photo":["images/material/mech/photo-043.webp",123,84],"links":[{"kind":"official","url":"https://himpel.com/kr/product/detail?id=78&seq=39","label":"힘펠 빌트인 제습기 DHV-5PCCU"}],"q":"힘펠 DHV-5PCCU"},{"no":44,"L1":"욕실","L2":"가전","spec":"다기능 배기팬","model":"힘펠 / 휴젠뜨 3\n(FHD3-C150P)","note":[{"t":"확장 시 유상옵션","red":true}],"paid":true,"strip":["images/material/mech/row-044.webp",942,164],"photo":["images/material/mech/photo-044.webp",111,86],"links":[{"kind":"official","url":"https://himpel.com/kr/product/detail?id=35&seq=25","label":"힘펠 휴젠뜨3(기본형) FHD3-C150P"}],"q":"힘펠 FHD3-C150P"},{"no":45,"L1":"발코니","L2":"가전","spec":"전동빨래건조대","model":"피노시스템 / FED-4P","note":[{"t":"확장 시 기본제공","red":false}],"paid":false,"strip":["images/material/mech/row-045.webp",942,164],"photo":["images/material/mech/photo-045.webp",127,72],"links":[],"q":"피노시스템 FED-4P"},{"no":46,"L1":"현관","L2":"가전","spec":"신발 살균기","model":"쿠스코 / ZPP-14S","note":[{"t":"*신발장 유상옵션 선택 시 적용","red":true}],"paid":true,"strip":["images/material/mech/row-046.webp",942,165],"photo":["images/material/mech/photo-046.webp",162,89],"links":[{"kind":"official","url":"http://www.cuzco.co.kr/cuzco_product_repure","label":"쿠스코 Re:Pure 공기 제균기 ZPP-14S"}],"q":"쿠스코 ZPP-14S"}]},{"key":"arch","title":"건축","source":"마감재리스트_건축.jpeg","items":[{"no":1,"L1":"인테리어 시트","L2":"목창호, 외부창호, ABS도어, 걸레받이","spec":"시트","model":"KCC /\nYN316-L8","note":[],"paid":false,"strip":["images/material/arch/row-001.webp",942,165],"photo":["images/material/arch/photo-001.webp",114,120],"links":[{"kind":"brand","url":"https://www.kccglass.co.kr/main.do","label":"KCC글라스 공식 홈페이지"}],"q":"KCC YN316-L8"},{"no":2,"L1":"인테리어 시트","L2":"벽 판넬 (시트판넬)","spec":"시트","model":"KCC /\nYN316-L8","note":[{"t":"현관: 기본 /","red":false},{"t":"거실, 복도, 주방: 확장 시 유상옵션","red":true}],"paid":true,"strip":["images/material/arch/row-002.webp",942,164],"photo":["images/material/arch/photo-002.webp",114,120],"links":[{"kind":"brand","url":"https://www.kccglass.co.kr/main.do","label":"KCC글라스 공식 홈페이지"}],"q":"KCC YN316-L8"},{"no":3,"L1":"인테리어 시트","L2":"천장 몰딩","spec":"PVC","model":"지정 시트","note":[],"paid":false,"strip":["images/material/arch/row-003.webp",942,164],"photo":["images/material/arch/photo-003.webp",116,121]},{"no":4,"L1":"거실","L2":"아트월","spec":"타일","model":"가영세라믹스 /\nONE BEIGE\n(600X600)","note":[],"paid":false,"strip":["images/material/arch/row-004.webp",942,164],"photo":["images/material/arch/photo-004.webp",137,124],"links":[{"kind":"brand","url":"https://seti-9.com/","label":"세티나인(가영세라믹스) 공식"}],"q":"가영세라믹스 ONE BEIGE"},{"no":5,"L1":"거실","L2":"아트월","spec":"세라믹","model":"가영세라믹스 /\nU.T WHITE MINIMAL","note":[{"t":"확장 시 유상옵션","red":true}],"paid":true,"strip":["images/material/arch/row-005.webp",942,164],"photo":["images/material/arch/photo-005.webp",115,120],"links":[{"kind":"guess","url":"https://www.emilgroup.com/collections/brand/provenza/unique-travertine/minimal-white/","label":"Provenza Unique Travertine Minimal White (U.T 표기로 추정)"}],"q":"가영세라믹스 U.T WHITE MINIMAL"},{"no":6,"L1":"거실","L2":"아트월","spec":"코너비드","model":"지정 코너비드","note":[],"paid":false,"strip":["images/material/arch/row-006.webp",942,164],"photo":["images/material/arch/photo-006.webp",115,120]},{"no":7,"L1":"벽지","L2":"거실 / 주방 / 복도","spec":"벽지","model":"코스모스 / 413-3","note":[],"paid":false,"strip":["images/material/arch/row-007.webp",942,163],"photo":["images/material/arch/photo-007.webp",114,120],"links":[{"kind":"brand","url":"https://www.cosmoswa.co.kr/","label":"코스모스벽지 공식"}],"q":"코스모스벽지 413-3"},{"no":8,"L1":"벽지","L2":"현관팬트리","spec":"벽지","model":"LX하우시스 / 88280-5","note":[],"paid":false,"strip":["images/material/arch/row-008.webp",942,164],"photo":["images/material/arch/photo-008.webp",115,120],"links":[{"kind":"brand","url":"https://www.lxzin.com/zin/category/dep2/a070200","label":"LX지인 벽지&벽장재"}],"q":"LX하우시스 88280-5"},{"no":9,"L1":"벽지","L2":"침실1 (안방)","spec":"벽지","model":"서울벽지 / 4221-2","note":[],"paid":false,"strip":["images/material/arch/row-009.webp",942,164],"photo":["images/material/arch/photo-009.webp",115,120],"links":[{"kind":"brand","url":"https://www.seoulwallpaper.co.kr/","label":"서울벽지 공식"}],"q":"서울벽지 4221-2"},{"no":10,"L1":"벽지","L2":"침실2","spec":"벽지","model":"서울벽지 / 348-2","note":[],"paid":false,"strip":["images/material/arch/row-010.webp",942,165],"photo":["images/material/arch/photo-010.webp",116,120],"links":[{"kind":"brand","url":"https://www.seoulwallpaper.co.kr/","label":"서울벽지 공식"}],"q":"서울벽지 348-2"},{"no":11,"L1":"벽지","L2":"침실3","spec":"벽지","model":"서울벽지 / 4213-2","note":[],"paid":false,"strip":["images/material/arch/row-011.webp",942,162],"photo":["images/material/arch/photo-011.webp",115,120],"links":[{"kind":"shop","url":"https://daumdeco.co.kr/product/%ED%8A%B9%ED%8C%90%EC%9A%A9-%EC%84%9C%EC%9A%B8%EB%B2%BD%EC%A7%80-4213-1-1%EB%A1%A4-%ED%98%84%EC%9E%A5%EC%9A%A9-%EC%8B%A4%ED%81%AC%EB%B2%BD%EC%A7%80/14956/","label":"다음벽지 특판용 서울벽지 4213 (옵션 4213-2)"}],"q":"서울벽지 4213-2"},{"no":12,"L1":"벽지","L2":"복도팬트리","spec":"벽지","model":"LX하우시스 / 88280-5","note":[],"paid":false,"strip":["images/material/arch/row-012.webp",942,164],"photo":["images/material/arch/photo-012.webp",116,120],"links":[{"kind":"brand","url":"https://www.lxzin.com/zin/category/dep2/a070200","label":"LX지인 벽지&벽장재"}],"q":"LX하우시스 88280-5"},{"no":13,"L1":"벽지","L2":"드레스룸","spec":"벽지","model":"LX하우시스 / 88282-3","note":[],"paid":false,"strip":["images/material/arch/row-013.webp",942,164],"photo":["images/material/arch/photo-013.webp",114,119],"links":[{"kind":"brand","url":"https://www.lxzin.com/zin/category/dep2/a070200","label":"LX지인 벽지&벽장재"}],"q":"LX하우시스 88282-3"},{"no":14,"L1":"천장","L2":"공통","spec":"천장지","model":"코스모스 / 5301-1","note":[],"paid":false,"strip":["images/material/arch/row-014.webp",942,164],"photo":["images/material/arch/photo-014.webp",116,121],"links":[{"kind":"brand","url":"https://www.cosmoswa.co.kr/","label":"코스모스벽지 공식"}],"q":"코스모스벽지 5301-1"},{"no":15,"L1":"바닥","L2":"전실","spec":"강마루","model":"지정 강마루","note":[{"t":"제작품목","red":false}],"paid":false,"strip":["images/material/arch/row-015.webp",942,164],"photo":["images/material/arch/photo-015.webp",116,121]},{"no":16,"L1":"바닥","L2":"거실 / 주방 / 복도 / 복도팬트리","spec":"에디톤","model":"지정 에디톤 스톤","note":[{"t":"확장 시 유상옵션","red":true}],"paid":true,"strip":["images/material/arch/row-016.webp",942,164],"photo":["images/material/arch/photo-016.webp",115,119]},{"no":17,"L1":"바닥","L2":"침실1 (안방) / 침실2, 3 / 드레스룸","spec":"에디톤","model":"지정 에디톤 마루","note":[{"t":"확장 시 유상옵션","red":true}],"paid":true,"strip":["images/material/arch/row-017.webp",942,163],"photo":["images/material/arch/photo-017.webp",116,121]},{"no":18,"L1":"현관","L2":"디딤판 / 걸레받이","spec":"엔지니어드스톤","model":"지정 엔지니어드스톤","note":[{"t":"본 공사시 동급의 타사제품으로 변경될 수 있음","red":false}],"paid":false,"strip":["images/material/arch/row-018.webp",942,164],"photo":["images/material/arch/photo-018.webp",115,120]},{"no":19,"L1":"현관","L2":"바닥","spec":"타일","model":"가영세라믹스 /\nNEMA L GREY\n(600X600)","note":[],"paid":false,"strip":["images/material/arch/row-019.webp",942,164],"photo":["images/material/arch/photo-019.webp",114,118],"links":[{"kind":"brand","url":"https://seti-9.com/","label":"세티나인(가영세라믹스) 공식"}],"q":"가영세라믹스 NEMA L GREY"},{"no":20,"L1":"현관","L2":"현관오픈장 상판","spec":"엔지니어드스톤","model":"현대L&C /\n클라우드 RU676","note":[{"t":"확장 시 유상옵션","red":true}],"paid":true,"strip":["images/material/arch/row-020.webp",942,165],"photo":["images/material/arch/photo-020.webp",115,117],"links":[{"kind":"brand","url":"https://www.khanstone.co.kr/collection/all_colors.php","label":"칸스톤 ALL 컬러"}],"q":"칸스톤 RU676"},{"no":21,"L1":"현관 팬트리","L2":"걸레받이","spec":"시트","model":"KCC /\nYN316-L8","note":[],"paid":false,"strip":["images/material/arch/row-021.webp",942,163],"photo":["images/material/arch/photo-021.webp",114,113],"links":[{"kind":"brand","url":"https://www.kccglass.co.kr/main.do","label":"KCC글라스 공식 홈페이지"}],"q":"KCC YN316-L8"},{"no":22,"L1":"현관 팬트리","L2":"바닥","spec":"타일","model":"가영세라믹스 /\nNEMA L GREY\n(600X600)","note":[],"paid":false,"strip":["images/material/arch/row-022.webp",942,164],"photo":["images/material/arch/photo-022.webp",114,118],"links":[{"kind":"brand","url":"https://seti-9.com/","label":"세티나인(가영세라믹스) 공식"}],"q":"가영세라믹스 NEMA L GREY"},{"no":23,"L1":"욕실1 (공용)","L2":"젠다이 상판","spec":"인조강화석","model":"지정 인조강화석","note":[{"t":"본 공사시 동급의 타사제품으로 변경될 수 있음","red":false}],"paid":false,"strip":["images/material/arch/row-023.webp",942,164],"photo":["images/material/arch/photo-023.webp",115,120]},{"no":24,"L1":"욕실1 (공용)","L2":"젠다이 상판(하부포함) / 욕조 측면","spec":"엔지니어드스톤","model":"현대L&C / RU690","note":[{"t":"확장 시 유상옵션","red":true}],"paid":true,"strip":["images/material/arch/row-024.webp",942,164],"photo":["images/material/arch/photo-024.webp",116,117],"links":[{"kind":"brand","url":"https://www.khanstone.co.kr/collection/all_colors.php","label":"칸스톤 ALL 컬러"}],"q":"칸스톤 RU690"},{"no":25,"L1":"욕실1 (공용)","L2":"재료분리대 (도어씰)","spec":"BMC","model":"지정 BMC","note":[],"paid":false,"strip":["images/material/arch/row-025.webp",942,164],"photo":["images/material/arch/photo-025.webp",115,120]},{"no":26,"L1":"욕실1 (공용)","L2":"바닥","spec":"타일","model":"태영 / 4143\n(300X300)","note":[],"paid":false,"strip":["images/material/arch/row-026.webp",942,164],"photo":["images/material/arch/photo-026.webp",114,121],"links":[{"kind":"brand","url":"http://www.tyceramic.com/shop/list.php?ca_id=2010","label":"태영세라믹 바닥타일 300*300"}],"q":"태영세라믹 4143"},{"no":27,"L1":"욕실1 (공용)","L2":"벽","spec":"벽판넬","model":"지정 벽판넬","note":[{"t":"제작품목","red":false}],"paid":false,"strip":["images/material/arch/row-027.webp",942,164],"photo":["images/material/arch/photo-027.webp",114,120]},{"no":28,"L1":"욕실1 (공용)","L2":"벽","spec":"코너비드","model":"지정 코너비드","note":[],"paid":false,"strip":["images/material/arch/row-028.webp",942,164],"photo":["images/material/arch/photo-028.webp",116,121]},{"no":29,"L1":"욕실1 (공용)","L2":"천장","spec":"ABS","model":"평판형","note":[{"t":"제작품목","red":false}],"paid":false,"strip":["images/material/arch/row-029.webp",942,164],"photo":["images/material/arch/photo-029.webp",116,119]},{"no":30,"L1":"욕실2 (부부)","L2":"젠다이 상판","spec":"인조강화석","model":"지정 인조강화석","note":[],"paid":false,"strip":["images/material/arch/row-030.webp",942,164],"photo":["images/material/arch/photo-030.webp",116,120]},{"no":31,"L1":"욕실2 (부부)","L2":"젠다이 상판(하부포함)","spec":"엔지니어드스톤","model":"현대L&C / RU690","note":[{"t":"확장 시 유상옵션","red":true}],"paid":true,"strip":["images/material/arch/row-031.webp",942,161],"photo":["images/material/arch/photo-031.webp",116,119],"links":[{"kind":"brand","url":"https://www.khanstone.co.kr/collection/all_colors.php","label":"칸스톤 ALL 컬러"}],"q":"칸스톤 RU690"},{"no":32,"L1":"욕실2 (부부)","L2":"재료분리대 (도어씰)","spec":"BMC","model":"지정 BMC","note":[],"paid":false,"strip":["images/material/arch/row-032.webp",942,164],"photo":["images/material/arch/photo-032.webp",116,119]},{"no":33,"L1":"욕실2 (부부)","L2":"재료분리대 (샤워부스씰)","spec":"BMC","model":"지정 BMC","note":[],"paid":false,"strip":["images/material/arch/row-033.webp",942,164],"photo":["images/material/arch/photo-033.webp",116,122]},{"no":34,"L1":"욕실2 (부부)","L2":"바닥","spec":"타일","model":"태영 / 4015\n(300X300)","note":[],"paid":false,"strip":["images/material/arch/row-034.webp",942,164],"photo":["images/material/arch/photo-034.webp",115,120],"links":[{"kind":"brand","url":"http://www.tyceramic.com/shop/list.php?ca_id=2010","label":"태영세라믹 바닥타일 300*300"}],"q":"태영세라믹 4015"},{"no":35,"L1":"욕실2 (부부)","L2":"벽","spec":"벽판넬","model":"지정 벽판넬","note":[{"t":"제작품목","red":false}],"paid":false,"strip":["images/material/arch/row-035.webp",942,164],"photo":["images/material/arch/photo-035.webp",116,120]},{"no":36,"L1":"욕실2 (부부)","L2":"벽","spec":"코너비드","model":"지정 코너비드","note":[],"paid":false,"strip":["images/material/arch/row-036.webp",942,164],"photo":["images/material/arch/photo-036.webp",116,120]},{"no":37,"L1":"욕실2 (부부)","L2":"천장","spec":"ABS","model":"평판형","note":[{"t":"제작품목","red":false}],"paid":false,"strip":["images/material/arch/row-037.webp",942,163],"photo":["images/material/arch/photo-037.webp",116,119]},{"no":38,"L1":"주방","L2":"벽","spec":"타일","model":"태영 / 4682M\n(300x600)","note":[],"paid":false,"strip":["images/material/arch/row-038.webp",942,164],"photo":["images/material/arch/photo-038.webp",114,121],"links":[{"kind":"brand","url":"http://www.tyceramic.com/shop/list.php?ca_id=10","label":"태영세라믹 벽타일"}],"q":"태영세라믹 4682M"},{"no":39,"L1":"주방","L2":"벽","spec":"코너비드","model":"지정 코너비드","note":[{"t":"비확장 주방 해당","red":false}],"paid":false,"strip":["images/material/arch/row-039.webp",942,164],"photo":["images/material/arch/photo-039.webp",119,120]},{"no":40,"L1":"주방","L2":"상판","spec":"MMA","model":"지정 인조대리석","note":[],"paid":false,"strip":["images/material/arch/row-040.webp",942,165],"photo":["images/material/arch/photo-040.webp",116,122]},{"no":41,"L1":"주방","L2":"벽, 상판","spec":"세라믹","model":"가영세라믹스 /\nDIAMOND CREAM M","note":[{"t":"확장 시 유상옵션","red":true}],"paid":true,"strip":["images/material/arch/row-041.webp",942,163],"photo":["images/material/arch/photo-041.webp",114,120],"links":[{"kind":"official","url":"https://seti-9.com/product/detail/00314/3","label":"세티나인 I NATURALI 다이아몬드 크림","part":"세티나인 제품 페이지"},{"kind":"official","url":"https://www.laminam.com/en/products/i-naturali-diamond-cream/","label":"라미남 I Naturali Diamond Cream","part":"Laminam 제품 페이지"}],"q":"가영세라믹스 DIAMOND CREAM"},{"no":42,"L1":"드레스룸","L2":"파우더 상판","spec":"엔지니어드스톤","model":"현대L&C / RU676","note":[{"t":"확장 시 유상옵션","red":true}],"paid":true,"strip":["images/material/arch/row-042.webp",942,164],"photo":["images/material/arch/photo-042.webp",114,117],"links":[{"kind":"brand","url":"https://www.khanstone.co.kr/collection/all_colors.php","label":"칸스톤 ALL 컬러"}],"q":"칸스톤 RU676"},{"no":43,"L1":"발코니1 / 실외기실 / 대피공간","L2":"바닥","spec":"타일","model":"태영 / TFF 8743\n(300X300)","note":[],"paid":false,"strip":["images/material/arch/row-043.webp",942,164],"photo":["images/material/arch/photo-043.webp",114,120],"links":[{"kind":"official","url":"http://www.tyceramic.com/shop/item.php?it_id=1469174114","label":"태영세라믹 TFF-8743"}],"q":"태영세라믹 TFF-8743"},{"no":44,"L1":"발코니1 / 실외기실 / 대피공간","L2":"벽, 천장","spec":"도장","model":"삼화페인트 /\nNCS Collection 0043b\n컬러기준","note":[],"paid":false,"strip":["images/material/arch/row-044.webp",942,164],"photo":["images/material/arch/photo-044.webp",116,120],"links":[{"kind":"brand","url":"https://samhwa.com/news/samhwa-ncs-collection-950-%EC%B6%9C%EC%8B%9C","label":"삼화 SAMHWA-NCS Collection"}],"q":"삼화페인트 NCS 0043b"},{"no":45,"L1":"발코니2","L2":"바닥","spec":"타일","model":"태영 / TFF 8743\n(300X300)","note":[],"paid":false,"strip":["images/material/arch/row-045.webp",942,164],"photo":["images/material/arch/photo-045.webp",114,120],"links":[{"kind":"official","url":"http://www.tyceramic.com/shop/item.php?it_id=1469174114","label":"태영세라믹 TFF-8743"}],"q":"태영세라믹 TFF-8743"},{"no":46,"L1":"발코니2","L2":"벽, 천장","spec":"도장","model":"삼화페인트 /\nNCS Collection 0043b\n컬러기준","note":[],"paid":false,"strip":["images/material/arch/row-046.webp",942,164],"photo":["images/material/arch/photo-046.webp",116,119],"links":[{"kind":"brand","url":"https://samhwa.com/news/samhwa-ncs-collection-950-%EC%B6%9C%EC%8B%9C","label":"삼화 SAMHWA-NCS Collection"}],"q":"삼화페인트 NCS 0043b"},{"no":47,"L1":"발코니2","L2":"재료분리대 (도어씰)","spec":"BMC","model":"지정 BMC","note":[],"paid":false,"strip":["images/material/arch/row-047.webp",942,164],"photo":["images/material/arch/photo-047.webp",137,121]},{"no":48,"L1":"발코니2","L2":"재료분리대 (세탁단)","spec":"코너비드","model":"지정 코너비드","note":[],"paid":false,"strip":["images/material/arch/row-048.webp",942,164],"photo":["images/material/arch/photo-048.webp",114,116]},{"no":49,"L1":"가구","L2":"현관 신발장","L3":"도어","spec":"PET","model":"지정 PET","note":[{"t":"제작품목/ 확장 시 기본제공","red":false}],"paid":false,"strip":["images/material/arch/row-049.webp",942,164],"photo":["images/material/arch/photo-049.webp",115,119]},{"no":50,"L1":"가구","L2":"현관 신발장","L3":"현관 오픈장 POINT","spec":"LPM","model":"지정 LPM","note":[{"t":"제작품목/","red":false},{"t":"확장 시 유상옵션","red":true}],"paid":true,"strip":["images/material/arch/row-050.webp",942,165],"photo":["images/material/arch/photo-050.webp",116,119]},{"no":51,"L1":"가구","L2":"현관 신발장","L3":"손잡이","spec":"AL","model":"지정 알루미늄","note":[{"t":"제작품목/ 확장 시 기본제공","red":false}],"paid":false,"strip":["images/material/arch/row-051.webp",942,162],"photo":["images/material/arch/photo-051.webp",115,119]},{"no":52,"L1":"가구","L2":"현관 신발장","L3":"바디재","spec":"P.P","model":"지정 P.P","note":[{"t":"제작품목/ 확장 시 기본제공","red":false}],"paid":false,"strip":["images/material/arch/row-052.webp",942,164],"photo":["images/material/arch/photo-052.webp",115,121]},{"no":53,"L1":"가구","L2":"현관팬트리 도어","L3":"서라운딩, FIX","spec":"PET","model":"지정 PET","note":[{"t":"제작품목/ 확장 시 기본제공","red":false}],"paid":false,"strip":["images/material/arch/row-053.webp",942,164],"photo":["images/material/arch/photo-053.webp",114,119]},{"no":54,"L1":"가구","L2":"현관팬트리 도어","L3":"도어","spec":"브론즈경","model":"지정 브론즈경","note":[{"t":"제작품목/ 확장 시 기본제공","red":false}],"paid":false,"strip":["images/material/arch/row-054.webp",942,164],"photo":["images/material/arch/photo-054.webp",116,121]},{"no":55,"L1":"가구","L2":"현관팬트리 도어","L3":"손잡이","spec":"AL","model":"지정 알루미늄","note":[{"t":"제작품목/ 확장 시 기본제공","red":false}],"paid":false,"strip":["images/material/arch/row-055.webp",942,164],"photo":["images/material/arch/photo-055.webp",116,119]},{"no":56,"L1":"가구","L2":"현관팬트리 도어","L3":"문틀","spec":"P.P","model":"지정 P.P","note":[{"t":"제작품목/ 확장 시 기본제공","red":false}],"paid":false,"strip":["images/material/arch/row-056.webp",942,164],"photo":["images/material/arch/photo-056.webp",115,120]},{"no":57,"L1":"가구","L2":"복도팬트리 도어","L3":"도어","spec":"LPM","model":"지정 LPM","note":[{"t":"제작품목/ 확장 시 기본제공","red":false}],"paid":false,"strip":["images/material/arch/row-057.webp",942,163],"photo":["images/material/arch/photo-057.webp",114,120]},{"no":58,"L1":"가구","L2":"복도팬트리 도어","L3":"도어","spec":"유리","model":"지정 브론즈사틴 유리","note":[{"t":"제작품목/","red":false},{"t":"확장 시 유상옵션","red":true}],"paid":true,"strip":["images/material/arch/row-058.webp",942,164],"photo":["images/material/arch/photo-058.webp",117,122]},{"no":59,"L1":"가구","L2":"복도팬트리 도어","L3":"손잡이","spec":"AL","model":"지정 알루미늄","note":[{"t":"제작품목/ 확장 시 기본제공","red":false}],"paid":false,"strip":["images/material/arch/row-059.webp",942,164],"photo":["images/material/arch/photo-059.webp",114,119]},{"no":60,"L1":"가구","L2":"드레스룸 도어","L3":"서라운딩","spec":"P.P","model":"지정 P.P","note":[{"t":"제작품목/ 확장 시 기본제공","red":false}],"paid":false,"strip":["images/material/arch/row-060.webp",942,165],"photo":["images/material/arch/photo-060.webp",118,119]},{"no":61,"L1":"가구","L2":"드레스룸 도어","L3":"손잡이","spec":"AL","model":"지정 알루미늄","note":[{"t":"제작품목/ 확장 시 기본제공","red":false}],"paid":false,"strip":["images/material/arch/row-061.webp",942,161],"photo":["images/material/arch/photo-061.webp",118,119]},{"no":62,"L1":"가구","L2":"드레스룸 도어","L3":"도어","spec":"P.P","model":"지정 P.P","note":[{"t":"제작품목/ 확장 시 기본제공","red":false}],"paid":false,"strip":["images/material/arch/row-062.webp",942,164],"photo":["images/material/arch/photo-062.webp",118,119]},{"no":63,"L1":"가구","L2":"드레스룸 도어","L3":"도어","spec":"유리","model":"지정 브론즈사틴 유리","note":[{"t":"제작품목/","red":false},{"t":"확장 시 유상옵션","red":true}],"paid":true,"strip":["images/material/arch/row-063.webp",942,163],"photo":["images/material/arch/photo-063.webp",117,122]},{"no":64,"L1":"가구","L2":"드레스룸 도어","L3":"손잡이","spec":"AL","model":"지정 알루미늄","note":[{"t":"제작품목/","red":false},{"t":"확장 시 유상옵션","red":true}],"paid":true,"strip":["images/material/arch/row-064.webp",942,164],"photo":["images/material/arch/photo-064.webp",117,122]},{"no":65,"L1":"가구","L2":"드레스룸 도어","L3":"문틀","spec":"P.P","model":"지정 P.P","note":[{"t":"제작품목/ 확장 시 기본제공","red":false}],"paid":false,"strip":["images/material/arch/row-065.webp",942,164],"photo":["images/material/arch/photo-065.webp",116,119]},{"no":66,"L1":"가구","L2":"파우더창","L3":"서라운딩, 도어","spec":"포일","model":"지정 포일","note":[{"t":"제작품목/ 드레스룸: 확장 시 기본제공","red":false}],"paid":false,"strip":["images/material/arch/row-066.webp",942,164],"photo":["images/material/arch/photo-066.webp",119,119]},{"no":67,"L1":"가구","L2":"파우더창","L3":"서라운딩, 도어","spec":"LPM","model":"지정 LPM","note":[{"t":"제작품목/","red":false},{"t":"확장 시 유상옵션","red":true}],"paid":true,"strip":["images/material/arch/row-067.webp",942,163],"photo":["images/material/arch/photo-067.webp",114,120]},{"no":68,"L1":"가구","L2":"파우더창","L3":"손잡이","spec":"AL","model":"지정 알루미늄","note":[{"t":"제작품목/","red":false},{"t":"확장 시 유상옵션","red":true}],"paid":true,"strip":["images/material/arch/row-068.webp",942,164],"photo":["images/material/arch/photo-068.webp",118,119]},{"no":69,"L1":"가구","L2":"파우더창","L3":"바디재","spec":"P.P","model":"지정 P.P","note":[{"t":"제작품목/","red":false},{"t":"확장 시 유상옵션","red":true}],"paid":true,"strip":["images/material/arch/row-069.webp",942,164],"photo":["images/material/arch/photo-069.webp",117,120]},{"no":70,"L1":"가구","L2":"침실2, 3 붙박이장","L3":"서라운딩, 도어","spec":"P.P","model":"지정 P.P","note":[{"t":"제작품목/","red":false},{"t":"확장 시 유상옵션","red":true}],"paid":true,"strip":["images/material/arch/row-070.webp",942,165],"photo":["images/material/arch/photo-070.webp",119,120]},{"no":71,"L1":"가구","L2":"침실2, 3 붙박이장","L3":"은경","spec":"은경","model":"은경","note":[{"t":"제작품목/","red":false},{"t":"확장 시 유상옵션","red":true}],"paid":true,"strip":["images/material/arch/row-071.webp",942,162],"photo":["images/material/arch/photo-071.webp",114,118]},{"no":72,"L1":"가구","L2":"침실2, 3 붙박이장","L3":"손잡이","spec":"AL","model":"지정 알루미늄","note":[{"t":"제작품목/","red":false},{"t":"확장 시 유상옵션","red":true}],"paid":true,"strip":["images/material/arch/row-072.webp",942,164],"photo":["images/material/arch/photo-072.webp",118,119]},{"no":73,"L1":"가구","L2":"침실2, 3 붙박이장","L3":"바디재","spec":"P.P","model":"지정 P.P","note":[{"t":"제작품목/","red":false},{"t":"확장 시 유상옵션","red":true}],"paid":true,"strip":["images/material/arch/row-073.webp",942,164],"photo":["images/material/arch/photo-073.webp",119,120]},{"no":74,"L1":"가구","L2":"주방가구 상,하부장 / 냉장고장 / 키큰장 / 아일랜드장","L3":"서라운딩, 도어, 목찬넬","spec":"PET","model":"지정 PET","note":[{"t":"제작품목 (냉장고장: 확장 시 기본제공)","red":false},{"t":"*키큰장: 확장 시 유상옵션","red":true}],"paid":true,"strip":["images/material/arch/row-074.webp",942,164],"photo":["images/material/arch/photo-074.webp",114,120]},{"no":75,"L1":"가구","L2":"주방가구 상,하부장 / 냉장고장 / 키큰장 / 아일랜드장","L3":"키큰장 손잡이","spec":"AL","model":"지정 알루미늄","note":[{"t":"제작품목 (냉장고장: 확장 시 기본제공)","red":false},{"t":"*키큰장: 확장 시 유상옵션","red":true}],"paid":true,"strip":["images/material/arch/row-075.webp",942,164],"photo":["images/material/arch/photo-075.webp",114,120]},{"no":76,"L1":"가구","L2":"주방가구 상,하부장 / 냉장고장 / 키큰장 / 아일랜드장","L3":"바디재","spec":"P.P","model":"지정 P.P","note":[{"t":"제작품목 (냉장고장: 확장 시 기본제공)","red":false},{"t":"*키큰장: 확장 시 유상옵션","red":true}],"paid":true,"strip":["images/material/arch/row-076.webp",942,164],"photo":["images/material/arch/photo-076.webp",114,118]},{"no":77,"L1":"가구","L2":"홈바","L3":"서라운딩, 하부장, 목찬넬","spec":"LPM","model":"지정 LPM","note":[{"t":"확장 시 유상옵션","red":true}],"paid":true,"strip":["images/material/arch/row-077.webp",942,163],"photo":["images/material/arch/photo-077.webp",114,120]},{"no":78,"L1":"가구","L2":"홈바","L3":"상부장 도어","spec":"유리","model":"지정 유리","note":[{"t":"확장 시 유상옵션","red":true}],"paid":true,"strip":["images/material/arch/row-078.webp",942,164],"photo":["images/material/arch/photo-078.webp",116,120]},{"no":79,"L1":"가구","L2":"홈바","L3":"상부장 프레임","spec":"AL","model":"지정 알루미늄","note":[{"t":"확장 시 유상옵션","red":true}],"paid":true,"strip":["images/material/arch/row-079.webp",942,164],"photo":["images/material/arch/photo-079.webp",115,120]},{"no":80,"L1":"가구","L2":"홈바","L3":"상부장 바디재","spec":"P.P","model":"지정 P.P","note":[{"t":"확장 시 유상옵션","red":true}],"paid":true,"strip":["images/material/arch/row-080.webp",942,165],"photo":["images/material/arch/photo-080.webp",116,121]},{"no":81,"L1":"가구","L2":"홈바","L3":"하부장 바디재","spec":"P.P","model":"지정 P.P","note":[{"t":"확장 시 유상옵션","red":true}],"paid":true,"strip":["images/material/arch/row-081.webp",942,159],"photo":["images/material/arch/photo-081.webp",119,116]},{"no":82,"L1":"가구","L2":"발코니2 보조주방 가구","L3":"서라운딩, 도어","spec":"PET","model":"지정 PET","note":[{"t":"제작품목/","red":false},{"t":"확장 시 유상옵션","red":true}],"paid":true,"strip":["images/material/arch/row-082.webp",942,164],"photo":["images/material/arch/photo-082.webp",118,118]},{"no":83,"L1":"가구","L2":"발코니2 보조주방 가구","L3":"바디재","spec":"P.P","model":"지정 P.P","note":[{"t":"제작품목/","red":false},{"t":"확장 시 유상옵션","red":true}],"paid":true,"strip":["images/material/arch/row-083.webp",942,164],"photo":["images/material/arch/photo-083.webp",119,118]},{"no":84,"L1":"가구","L2":"현관 팬트리 / 복도 팬트리 / 드레스룸","L3":"시스템 선반","spec":"포일","model":"지정 포일","note":[{"t":"제작품목/ 확장 시 기본제공","red":false}],"paid":false,"strip":["images/material/arch/row-084.webp",942,164],"photo":["images/material/arch/photo-084.webp",118,118]},{"no":85,"L1":"가구","L2":"드레스룸","L3":"벽판넬 / 선반","spec":"LPM","model":"지정 LPM","note":[{"t":"제작품목/","red":false},{"t":"확장 시 유상옵션","red":true}],"paid":true,"strip":["images/material/arch/row-085.webp",942,163],"photo":["images/material/arch/photo-085.webp",114,120]},{"no":86,"L1":"가구","L2":"드레스룸","L3":"조명형 선반","spec":"유리","model":"지정 브론즈 유리","note":[{"t":"제작품목/","red":false},{"t":"확장 시 유상옵션","red":true}],"paid":true,"strip":["images/material/arch/row-086.webp",942,164],"photo":["images/material/arch/photo-086.webp",116,120]},{"no":87,"L1":"가구","L2":"드레스룸","L3":"조명형 선반","spec":"프레임","model":"지정 금속","note":[{"t":"제작품목/","red":false},{"t":"확장 시 유상옵션","red":true}],"paid":true,"strip":["images/material/arch/row-087.webp",942,164],"photo":["images/material/arch/photo-087.webp",117,121]},{"no":88,"L1":"욕실","L2":"욕실장","L3":"욕실1 (공용) 도어","spec":"은경 (상부장)","model":"은경 슬라이딩 + AL.FRAME","note":[{"t":"제작품목/","red":false},{"t":"확장 시 유상옵션 *옵션 선택 시 상부장 하부 간접등 설치됨","red":true}],"paid":true,"strip":["images/material/arch/row-088.webp",942,164],"photo":["images/material/arch/photo-088.webp",149,120]},{"no":89,"L1":"욕실","L2":"욕실장","L3":"욕실2 (부부) 도어","spec":"은경 (상부장)","model":"은경 여닫이장 +오픈장","note":[{"t":"제작품목/","red":false},{"t":"확장 시 유상옵션 *옵션 선택 시 상부장 하부 간접등 설치됨","red":true}],"paid":true,"strip":["images/material/arch/row-089.webp",942,164],"photo":["images/material/arch/photo-089.webp",148,119]},{"no":90,"L1":"욕실","L2":"욕실장","L3":"바디","spec":"PS (시트전사)","model":"지정 시트 전사","note":[{"t":"제작품목/","red":false},{"t":"확장 시 유상옵션 *옵션 선택 시 상부장 하부 간접등 설치됨","red":true}],"paid":true,"strip":["images/material/arch/row-090.webp",942,164],"photo":["images/material/arch/photo-090.webp",114,119]},{"no":91,"L1":"욕실","L2":"욕실2 (부부)","L3":"샤워부스","spec":"유리","model":"안전유리","note":[{"t":"제작품목","red":false}],"paid":false,"strip":["images/material/arch/row-091.webp",942,162],"photo":["images/material/arch/photo-091.webp",116,120]},{"no":92,"L1":"욕실","L2":"욕실2 (부부)","L3":"샤워부스","spec":"프레임","model":"실버 유광","note":[{"t":"제작품목","red":false}],"paid":false,"strip":["images/material/arch/row-092.webp",942,164],"photo":["images/material/arch/photo-092.webp",116,121]},{"no":93,"L1":"욕실","L2":"욕실2 (부부)","L3":"샤워부스","spec":"프레임","model":"지정 색상 기준","note":[{"t":"제작품목/","red":false},{"t":"확장 시 유상옵션","red":true}],"paid":true,"strip":["images/material/arch/row-093.webp",942,164],"photo":["images/material/arch/photo-093.webp",81,120]},{"no":94,"L1":"하드웨어","L2":"현관 도어락","spec":"디지털 도어락 (PUSH PULL / 지문인식)","model":"㈜솔리티 /\nP6000-B (다크실버)","note":[],"paid":false,"strip":["images/material/arch/row-094.webp",942,164],"photo":["images/material/arch/photo-094.webp",57,110],"links":[{"kind":"official","url":"https://www.solitykorea.com/kr/products/products/show?GOOD_SEQ=162","label":"솔리티 P6000-B 원스텝 지문인식 푸시풀 도어락","part":"제품 페이지"},{"kind":"shop","url":"https://tankplaza.com/product/%EC%9B%90%EC%8A%A4%ED%85%9D-%EC%A7%80%EB%AC%B8%EC%9D%B8%EC%8B%9D-%ED%91%B8%EC%8B%9C%ED%92%80-tank-p6000-b/73/","label":"솔리티 공식몰 P6000-B","part":"공식몰 판매 페이지"}],"q":"솔리티 P6000-B"},{"no":95,"L1":"하드웨어","L2":"침실1 (안방) / 침실2,3 / 욕실1,2 / 발코니2","spec":"도어레버","model":"CL 6007 BN","note":[],"paid":false,"strip":["images/material/arch/row-095.webp",942,164],"photo":["images/material/arch/photo-095.webp",131,59],"links":[],"q":"CL 6007 BN"},{"no":96,"L1":"하드웨어","L2":"대피공간","spec":"도어레버","model":"CL 6007 BN-F","note":[],"paid":false,"strip":["images/material/arch/row-096.webp",942,164],"photo":["images/material/arch/photo-096.webp",131,59],"links":[],"q":"CL 6007 BN-F"},{"no":97,"L1":"하드웨어","L2":"실외기실","spec":"도어레버","model":"CL 6007 BN","note":[],"paid":false,"strip":["images/material/arch/row-097.webp",942,164],"photo":["images/material/arch/photo-097.webp",131,59],"links":[],"q":"CL 6007 BN"},{"no":98,"L1":"하드웨어","L2":"전실","spec":"경첩","model":"지정 경첩","note":[],"paid":false,"strip":["images/material/arch/row-098.webp",942,164],"photo":["images/material/arch/photo-098.webp",90,113]},{"no":99,"L1":"하드웨어","L2":"전실","spec":"도어스토퍼","model":"지정 도어스토퍼","note":[{"t":"제작품목 / 동급의 타사제품으로 변경될 수 있음","red":false}],"paid":false,"strip":["images/material/arch/row-099.webp",942,164],"photo":["images/material/arch/photo-099.webp",117,37]},{"no":100,"L1":"하드웨어","L2":"침실1 (안방) / 침실2,3 / 욕실1","spec":"프리미엄 도어","model":"VESTA /\nVCH-120S +VHD-47FW\n(W-61 컬러기준)","note":[{"t":"제작품목/","red":false},{"t":"확장 시 유상옵션","red":true}],"paid":true,"strip":["images/material/arch/row-100.webp",942,165],"photo":["images/material/arch/photo-100.webp",80,119],"links":[],"q":"VESTA VCH-120S"},{"no":101,"L1":"기타","L2":"대피공간","spec":"방화도어","model":"도어: 지정 도장\n프레임: 지정 도장","note":[],"paid":false,"strip":["images/material/arch/row-101.webp",942,161],"photo":["images/material/arch/photo-101.webp",116,119]},{"no":102,"L1":"기타","L2":"현관","spec":"방화도어","model":"도어: 지정 칼라강판\n프레임: 지정 도장","note":[],"paid":false,"strip":["images/material/arch/row-102.webp",942,164],"photo":["images/material/arch/photo-102.webp",81,120]},{"no":103,"L1":"기타","L2":"현관","spec":"중문","model":"프레임: 지정 도장\n유리: 지정 유리","note":[{"t":"확장 시 유상옵션","red":true}],"paid":true,"strip":["images/material/arch/row-103.webp",942,164],"photo":["images/material/arch/photo-103.webp",80,121]}]}]};
+
+    const state = { file: 'elec', section: '', q: '', paid: false, view: 'card' };
+    let visible = [];   // 현재 화면에 보이는 항목(라이트박스 이동 순서)
+    let current = -1;
+
+    const $ = (s) => document.querySelector(s);
+    const esc = (s) => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+    const norm = (s) => String(s).toLowerCase().replace(/\s+/g, '');
+
+    DATA.files.forEach(f => f.items.forEach(it => {
+        it.file = f.key;
+        it.crumb = [it.L2, it.L3].filter(Boolean).join(' › ');
+        const specs = (it.specs || []).map(s => s.join(' ')).join(' ');
+        it.hay = norm([it.L1, it.L2, it.L3, it.spec, it.model, specs, it.note.map(n => n.t).join(' ')].join(' '));
+    }));
+    const fileOf = (key) => DATA.files.find(f => f.key === key);
+
+    function matches(it) {
+        if (state.paid && !it.paid) return false;
+        if (state.q) {
+            const terms = state.q.split(/\s+/).filter(Boolean).map(norm);
+            if (!terms.every(t => it.hay.includes(t))) return false;
+        }
+        return true;
+    }
+
+    function sectionsOf(items) {
+        const map = new Map();
+        items.forEach(it => { if (!map.has(it.L1)) map.set(it.L1, []); map.get(it.L1).push(it); });
+        return map;
+    }
+
+    const LINK_ICON = '<svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24" aria-hidden="true"><path d="M10 14a5 5 0 007.07 0l3-3a5 5 0 00-7.07-7.07l-1 1M14 10a5 5 0 00-7.07 0l-3 3a5 5 0 007.07 7.07l1-1" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+    const EXT_ICON = '<svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M19 14v5a1 1 0 01-1 1H5a1 1 0 01-1-1V6a1 1 0 011-1h5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+    const KIND = { official: '제품 페이지', list: '제품 목록', shop: '판매 페이지', guess: '추정 제품', brand: '브랜드 사이트' };
+    const hasPage = (it) => (it.links || []).some(l => l.kind !== 'brand' && l.kind !== 'guess');
+    function linksHtml(it) {
+        const links = (it.links || []).map(l => {
+            const host = (() => { try { return new URL(l.url).hostname.replace(/^www\./, ''); } catch (_) { return ''; } })();
+            return `<a class="${l.kind === 'brand' || l.kind === 'guess' ? '' : 'primary'}" href="${esc(l.url)}" target="_blank" rel="noopener noreferrer" title="${esc(l.label || '')}">${l.part ? esc(l.part) : (KIND[l.kind] || '링크')} <small>${esc(host)}</small>${EXT_ICON}</a>`;
+        });
+        if (it.q) links.push(`<a href="https://search.naver.com/search.naver?query=${encodeURIComponent(it.q)}" target="_blank" rel="noopener noreferrer">네이버 검색 <small>${esc(it.q)}</small>${EXT_ICON}</a>`);
+        return links.length ? `<div class="links">${links.join('')}</div>` : '';
+    }
+
+    function noteHtml(it) {
+        if (!it.note.length) return '';
+        return it.note.map(n => n.red ? `<span class="red">${esc(n.t)}</span>` : esc(n.t)).join(' ');
+    }
+    function specsHtml(it) {
+        if (!it.specs) return '';
+        return '<dl class="specs">' + it.specs.map(([k, v]) => `<dt>${esc(k)}</dt><dd>${esc(v)}</dd>`).join('') + '</dl>';
+    }
+
+    function cardHtml(it, idx) {
+        const photo = it.photo
+            ? `<img src="${it.photo[0]}" width="${it.photo[1]}" height="${it.photo[2]}" loading="lazy" alt="${esc(it.spec + ' ' + it.model.replace(/\n/g, ' '))}">`
+            : '';
+        const note = noteHtml(it);
+        return `<button type="button" class="card${it.paid ? ' paid' : ''}" data-idx="${idx}">
+            <div class="card-photo"><span class="no">No.${it.no}</span>${hasPage(it) ? `<span class="has-link" title="제품 링크 있음" aria-label="제품 링크 있음">${LINK_ICON}</span>` : ''}${photo}</div>
+            <div class="card-body">
+                ${it.crumb ? `<div class="crumb">${esc(it.crumb)}</div>` : ''}
+                <div class="title">${esc(it.spec)}</div>
+                ${it.model ? `<div class="model">${esc(it.model)}</div>` : ''}
+                ${specsHtml(it)}
+                ${note ? `<div class="note">${note}</div>` : ''}
+            </div>
+        </button>`;
+    }
+
+    function stripHtml(it, idx) {
+        return `<button type="button" class="strip" data-idx="${idx}" aria-label="No.${it.no} ${esc(it.L1)} ${esc(it.spec)} 크게 보기">
+            <img src="${it.strip[0]}" width="${it.strip[1]}" height="${it.strip[2]}" loading="lazy" alt="원본 행 No.${it.no}">
+        </button>`;
+    }
+
+    function render() {
+        const file = fileOf(state.file);
+        // 파일 탭 (검색·유상옵션 필터 반영 건수)
+        $('#fileTabs').innerHTML = DATA.files.map(f =>
+            `<button type="button" data-file="${f.key}" aria-pressed="${f.key === state.file}">${f.title}<span class="cnt">${f.items.filter(matches).length}</span></button>`
+        ).join('');
+
+        const filtered = file.items.filter(matches);
+        const secs = sectionsOf(filtered);
+        if (state.section && !secs.has(state.section)) state.section = '';
+
+        // 구분 칩
+        const allSecs = [...sectionsOf(file.items).keys()];
+        $('#chips').innerHTML = [`<button type="button" class="chip" data-sec="" aria-pressed="${!state.section}">전체<span class="cnt">${filtered.length}</span></button>`]
+            .concat(allSecs.filter(s => secs.has(s)).map(s =>
+                `<button type="button" class="chip" data-sec="${esc(s)}" aria-pressed="${state.section === s}">${esc(s)}<span class="cnt">${secs.get(s).length}</span></button>`
+            )).join('');
+
+        const chips = $('#chips'), on = chips.querySelector('[aria-pressed="true"]');
+        if (on) {
+            const l = on.offsetLeft - chips.offsetLeft, r = l + on.offsetWidth;
+            if (l < chips.scrollLeft || r > chips.scrollLeft + chips.clientWidth) chips.scrollLeft = l - 16;
+        }
+
+        $('#viewTabs').querySelectorAll('button').forEach(b => b.setAttribute('aria-pressed', b.dataset.view === state.view));
+        $('#paidToggle').setAttribute('aria-pressed', state.paid);
+
+        visible = [];
+        let html = '';
+        for (const [name, items] of secs) {
+            if (state.section && name !== state.section) continue;
+            const body = items.map(it => {
+                const idx = visible.push(it) - 1;
+                return state.view === 'card' ? cardHtml(it, idx) : stripHtml(it, idx);
+            }).join('');
+            html += `<section class="section"><h2>${esc(name)}<span class="cnt">${items.length}개</span></h2>
+                <div class="${state.view === 'card' ? 'grid' : 'strips'}">${body}</div></section>`;
+        }
+        $('#content').innerHTML = html || `<div class="empty">조건에 맞는 항목이 없습니다.</div>`;
+    }
+
+    // 라이트박스
+    const lb = $('#lb');
+    function openAt(idx) {
+        current = idx;
+        const it = visible[idx];
+        const file = fileOf(it.file);
+        const note = noteHtml(it);
+        $('#lbPos').textContent = `${file.title} · No.${it.no}  (${idx + 1} / ${visible.length})`;
+        $('#lbPrev').disabled = idx <= 0;
+        $('#lbNext').disabled = idx >= visible.length - 1;
+        const pw = it.photo ? Math.min(it.photo[1] * 2, 260) : 0;
+        $('#lbBody').innerHTML = `
+            <div class="lb-top">
+                <div class="lb-photo">${it.photo ? `<img src="${it.photo[0]}" style="width:${pw}px" alt="${esc(it.spec)}">` : ''}</div>
+                <div class="lb-info">
+                    <div class="crumb">${esc([it.L1, it.L2, it.L3].filter(Boolean).join(' › '))}</div>
+                    <div class="title">${esc(it.spec)}</div>
+                    ${it.model ? `<div class="model">${esc(it.model)}</div>` : ''}
+                    ${specsHtml(it)}
+                    ${note ? `<div class="note${it.paid ? ' paid' : ''}">${note}</div>` : ''}
+                    ${linksHtml(it)}
+                </div>
+            </div>
+            <div class="lb-strip">
+                <h3>원본 행</h3>
+                <div class="scroller"><img src="${it.strip[0]}" width="${it.strip[1]}" height="${it.strip[2]}" alt="원본 행 No.${it.no}"></div>
+            </div>`;
+        $('#lbBody').scrollTop = 0;
+        if (!lb.open) lb.showModal();
+    }
+    const step = (d) => { const n = current + d; if (n >= 0 && n < visible.length) openAt(n); };
+
+    $('#lbPrev').addEventListener('click', () => step(-1));
+    $('#lbNext').addEventListener('click', () => step(1));
+    $('#lbClose').addEventListener('click', () => lb.close());
+    lb.addEventListener('click', (e) => { if (e.target === lb) lb.close(); });
+    lb.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowLeft') { e.preventDefault(); step(-1); }
+        if (e.key === 'ArrowRight') { e.preventDefault(); step(1); }
+    });
+    let touchX = null, touchY = null;
+    lb.addEventListener('touchstart', (e) => { touchX = e.touches[0].clientX; touchY = e.touches[0].clientY; }, { passive: true });
+    lb.addEventListener('touchend', (e) => {
+        if (touchX === null) return;
+        const dx = e.changedTouches[0].clientX - touchX, dy = e.changedTouches[0].clientY - touchY;
+        // 원본 행 가로 스크롤과 겹치지 않도록 사진·정보 영역에서만 스와이프
+        if (!e.target.closest('.scroller') && Math.abs(dx) > 60 && Math.abs(dx) > Math.abs(dy) * 1.5) step(dx < 0 ? 1 : -1);
+        touchX = null;
+    });
+
+    // 이벤트
+    $('#fileTabs').addEventListener('click', (e) => {
+        const b = e.target.closest('button'); if (!b) return;
+        state.file = b.dataset.file; state.section = '';
+        history.replaceState(null, '', '#' + state.file);
+        render(); window.scrollTo({ top: 0 });
+    });
+    $('#chips').addEventListener('click', (e) => {
+        const b = e.target.closest('button'); if (!b) return;
+        state.section = b.dataset.sec; render();
+        const top = document.querySelector('.toolbar').getBoundingClientRect().top + window.scrollY;
+        if (window.scrollY > top) window.scrollTo({ top });
+    });
+    $('#viewTabs').addEventListener('click', (e) => {
+        const b = e.target.closest('button'); if (!b) return;
+        state.view = b.dataset.view;
+        try { localStorage.setItem('material-view', state.view); } catch (_) {}
+        render();
+    });
+    $('#paidToggle').addEventListener('click', () => { state.paid = !state.paid; render(); });
+    let qTimer;
+    $('#q').addEventListener('input', (e) => { clearTimeout(qTimer); qTimer = setTimeout(() => { state.q = e.target.value.trim(); render(); }, 120); });
+    $('#content').addEventListener('click', (e) => {
+        const b = e.target.closest('[data-idx]'); if (b) openAt(+b.dataset.idx);
+    });
+    window.addEventListener('hashchange', () => {
+        const k = location.hash.slice(1);
+        if (fileOf(k) && k !== state.file) { state.file = k; state.section = ''; render(); }
+    });
+
+    // 초기 상태
+    if (fileOf(location.hash.slice(1))) state.file = location.hash.slice(1);
+    try { const v = localStorage.getItem('material-view'); if (v === 'card' || v === 'row') state.view = v; } catch (_) {}
+    render();
+    </script>
+</body>
+
+</html>
